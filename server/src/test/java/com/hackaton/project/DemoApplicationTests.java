@@ -1,4 +1,4 @@
-package test.java.com.example.demo;
+package com.hackaton.project;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
