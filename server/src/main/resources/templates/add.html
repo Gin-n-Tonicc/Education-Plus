@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <meta charset="UTF-8">
+  <title>Add actor</title>
+</head>
+<body>
+<div class="fr">
+  <h1 align="center">Add actor</h1>
+  <form action = "action_page.php" class="was-validated" th:action = "@{/users/submit}" method="post"
+        th:object = "${user}">
+    <div class="form-group">
+      <p><input type="text" th:field="*{fullName}" class="form-control" placeholder="USER'S NAME" required>
+        <span th:if = "${#fields.hasErrors('fullName')}" th:errors = "*{fullName}" style = "color:red"></span></p>
+      <p><input type="text" th:field="*{email}" class="form-control" placeholder="USER'S EMAIL" required>
+        <span th:if = "${#fields.hasErrors('email')}" th:errors = "*{email}" style = "color:red"></span></p>
+      <p><input type="text" th:field="*{password}" class="form-control" placeholder="USER'S PASSWORD" required>
+        <span th:if = "${#fields.hasErrors('password')}" th:errors = "*{password}" style = "color:red"></span></p>
+      <p><input type="text" th:field="*{school}" class="form-control" placeholder="USER'S SCHOOL" required>
+        <span th:if = "${#fields.hasErrors('school')}" th:errors = "*{school}" style = "color:red"></span></p>
+      <p><input type="text" th:field="*{town}" class="form-control" placeholder="USER'S TOWN" required>
+        <span th:if = "${#fields.hasErrors('town')}" th:errors = "*{town}" style = "color:red"></span></p>
+      <p><input type="text" th:field="*{interests}" class="form-control" placeholder="USER'S INTERESTS" required>
+        <span th:if = "${#fields.hasErrors('interests')}" th:errors = "*{interests}" style = "color:red"></span></p>
+      <button type="submit" class="btn btn-default">SUBMIT</button>
+      <button type="reset" class="btn btn-default">RESET</button>
+    </div>
+  </form>
+</div>
+</body>
+</html>
+<style>
+div.fr {
+width: 500px;
+margin: auto;
+}
+</style>
