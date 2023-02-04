@@ -29,6 +29,7 @@ public class Business {
     @NotBlank
     private String placeOfResidence;
     private Role role;
+    private boolean verified;
 
     public Long getId() {
         return id;
@@ -84,6 +85,14 @@ public class Business {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public boolean isVerified() {
+        return verified;
+    }
+
+    public void setVerified(boolean verified) {
+        this.verified = verified;
     }
 
     @Override

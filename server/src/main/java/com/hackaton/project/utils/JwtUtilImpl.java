@@ -21,6 +21,7 @@ public class JwtUtilImpl {
     private ModelMapper modelMapper;
 
     public String encode(UserAuthDTO userAuthDTO) {
+        System.out.println(userAuthDTO.getName() + " " + userAuthDTO.getRole());
         return Jwts.builder()
                 .setSubject(userAuthDTO.getName())
                 .claim(PAYLOAD_NAME, userAuthDTO)

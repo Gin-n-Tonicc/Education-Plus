@@ -19,7 +19,8 @@ public class BusinessService {
     BusinessRepository businessRepository;
     public Business submitBusiness(@Valid @RequestBody Business business) {
         Optional<Business> optionalBusiness = businessRepository.findOneByEmail(business.getEmail());
-        business.setRole(Role.BUSINESS);
+        business.setRole(Role.USER);
+        business.setVerified(false);
 
         if (optionalBusiness.isPresent()) {
             throw new BusinessExistsException("email");
