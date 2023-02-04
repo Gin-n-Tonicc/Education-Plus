@@ -39,6 +39,8 @@ export class ErrorInterceptor implements HttpInterceptor {
                 of(err).pipe(
                     withLatestFrom(this.authService.user$),
                     switchMap(([err, user]) => {
+                        console.log('error interceptorings ', err);
+
                         if (err.status === 403) {
                             if (user) {
                                 this.apiError$$.next(
@@ -48,13 +50,13 @@ export class ErrorInterceptor implements HttpInterceptor {
                                 if (!this.router.url.includes(Pages.Login)) {
                                     this.apiError$$.next('Not authenticated!');
                                 } else {
-                                    this.apiError$$.next(err.error.message);
+                                    this.apiError$$.next(err.error.detail);
                                 }
 
                                 this.router.navigate([Pages.Login]);
                             }
                         } else {
-                            this.apiError$$.next(err.error.message);
+                            this.apiError$$.next(err.error.detail);
                         }
 
                         return throwError(() => err);
