@@ -1,5 +1,5 @@
 package com.hackaton.project.enums;
-public enum UserRole {
+public enum Role {
     ADMIN,
     USER
 }
