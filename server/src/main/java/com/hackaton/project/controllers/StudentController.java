@@ -2,8 +2,13 @@ package com.hackaton.project.controllers;
 
 import com.hackaton.project.dtos.StudentDTO;
 import com.hackaton.project.dtos.StudentLoginDTO;
+import com.hackaton.project.dtos.UserAuthDTO;
+import com.hackaton.project.dtos.UserDTO;
 import com.hackaton.project.entities.Student;
+import com.hackaton.project.repositories.StudentRepository;
 import com.hackaton.project.services.StudentService;
+import com.hackaton.project.utils.JwtUtilImpl;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +20,10 @@ import java.util.List;
 @RequestMapping("/students")
 public class StudentController {
     @Autowired
+    JwtUtilImpl jwtUtil;
+    @Autowired
+    StudentRepository studentRepository;
+    @Autowired
     StudentService studentService;
 
     @GetMapping
@@ -23,13 +32,25 @@ public class StudentController {
     }
 
     @PostMapping("/register")
-    public StudentDTO submitUser(@Valid @RequestBody Student user) {
+    public String submitUser(@Valid @RequestBody Student user) {
         Student submittedUser = studentService.submitStudent(user);
-         return StudentDTO.mapToDTO(submittedUser);
+        UserDTO userAuthDTO = StudentDTO.mapToDTO(submittedUser);
+
+        return jwtUtil.encode(userAuthDTO);
     }
     @PostMapping("/login")
-    public StudentDTO loginUser(@Valid @RequestBody StudentLoginDTO userLoginDTO) {
+    public String loginUser(HttpServletRequest request, @Valid @RequestBody StudentLoginDTO userLoginDTO) {
         Student loggedUser = studentService.loginStudent(userLoginDTO);
-        return StudentDTO.mapToDTO(loggedUser);
+        UserDTO userAuthDTO = StudentDTO.mapToDTO(loggedUser);
+
+        System.out.println(request.getAttribute("user") + " " + request.getAttribute("isAuthenticated"));
+
+        return jwtUtil.encode(userAuthDTO);
+    }
+
+    @PostMapping("/test")
+    public String test(HttpServletRequest request, @Valid @RequestBody StudentLoginDTO studentLoginDTO) {
+        request.getAttribute("user");
+        return "true";
     }
 }

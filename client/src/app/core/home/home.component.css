@@ -1,0 +1,33 @@
+.cards-container {
+    display: flex;
+    gap: 2rem;
+}
+
+.home-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4rem;
+}
+
+.recent-posts-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.recent-posts {
+    text-align: center;
+}
+
+.card {
+    text-align: center;
+    width: 18rem;
+}
+
+.card-text {
+    margin: 2rem 0;
+}
