@@ -1,15 +1,14 @@
 package com.hackaton.project.entities;
 
-import com.hackaton.project.enums.UserRole;
+import com.hackaton.project.enums.Role;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import org.hibernate.validator.constraints.Length;
-import org.springframework.boot.context.properties.bind.DefaultValue;
 
 @Entity
-public class User {
+public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -31,7 +30,7 @@ public class User {
 
     @Min(14)
     private int age;
-    private UserRole role;
+    private Role role;
 
     public String getFullName() {
         return fullName;
@@ -97,11 +96,11 @@ public class User {
         this.id = id;
     }
 
-    public UserRole getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(UserRole role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 

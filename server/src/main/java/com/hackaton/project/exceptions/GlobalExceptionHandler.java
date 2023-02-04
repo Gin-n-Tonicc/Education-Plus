@@ -11,17 +11,56 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
-    @ExceptionHandler(UserExistsException.class)
-    public ResponseEntity<ErrorDTO> handleUserExistsException(UserExistsException exception) {
+    @ExceptionHandler(StudentExistsException.class)
+    public ResponseEntity<ErrorDTO> handleStudentExistsException(StudentExistsException exception) {
         return new ResponseEntity<>(
                 ErrorDTO.builder()
-                        .withTitle("User Already Exists")
+                        .withTitle("Student Already Exists")
                         .withDetails(exception.getMessage())
                         .withStatus(HttpStatus.CONFLICT.value())
-                        .withErrorType(UserExistsException.class.getSimpleName())
-                        .withErrorCode("UEE0")
+                        .withErrorType(StudentExistsException.class.getSimpleName())
+                        .withErrorCode("SEE0")
                         .build(),
                 HttpStatus.CONFLICT
+        );
+    }
+    @ExceptionHandler(InvalidStudentDataException.class)
+    public ResponseEntity<ErrorDTO> handleInvalidStudentData(InvalidStudentDataException exception) {
+        return new ResponseEntity<>(
+                ErrorDTO.builder()
+                        .withTitle("Invalid credentials")
+                        .withDetails(exception.getMessage())
+                        .withStatus(HttpStatus.BAD_REQUEST.value())
+                        .withErrorType(InvalidStudentDataException.class.getSimpleName())
+                        .withErrorCode("ISD0")
+                        .build(),
+                HttpStatus.BAD_REQUEST
+        );
+    }
+    @ExceptionHandler(BusinessExistsException.class)
+    public ResponseEntity<ErrorDTO> handleBusinessExistsException(BusinessExistsException exception) {
+        return new ResponseEntity<>(
+                ErrorDTO.builder()
+                        .withTitle("Business Already Exists")
+                        .withDetails(exception.getMessage())
+                        .withStatus(HttpStatus.CONFLICT.value())
+                        .withErrorType(BusinessExistsException.class.getSimpleName())
+                        .withErrorCode("BEE0")
+                        .build(),
+                HttpStatus.CONFLICT
+        );
+    }
+    @ExceptionHandler(InvalidBusinessDataException.class)
+    public ResponseEntity<ErrorDTO> handleInvalidBusinessData(InvalidBusinessDataException exception) {
+        return new ResponseEntity<>(
+                ErrorDTO.builder()
+                        .withTitle("Invalid credentials")
+                        .withDetails(exception.getMessage())
+                        .withStatus(HttpStatus.BAD_REQUEST.value())
+                        .withErrorType(InvalidBusinessDataException.class.getSimpleName())
+                        .withErrorCode("IBD0")
+                        .build(),
+                HttpStatus.BAD_REQUEST
         );
     }
 
