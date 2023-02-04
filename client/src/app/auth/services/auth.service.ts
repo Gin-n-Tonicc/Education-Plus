@@ -39,13 +39,40 @@ export class AuthService {
         });
     }
 
-    login(email: string, password: string) {
+    loginStudent(email: string, password: string) {
         return this.httpClient
-            .post<IUser>('api/users/login', {
+            .post<IUserAuthResponse>('api/students/login', {
                 email,
                 password,
             })
-            .pipe(tap((user) => this.users$$.next(user)));
+            .pipe(
+                tap((user) => {
+                    const newUser: IUser = Object.assign(
+                        { accessToken: user.token },
+                        user.student
+                    );
+
+                    this.users$$.next(newUser);
+                })
+            );
+    }
+
+    loginBusiness(email: string, password: string) {
+        return this.httpClient
+            .post<IUserAuthResponse>('api/businesses/login', {
+                email,
+                password,
+            })
+            .pipe(
+                tap((user) => {
+                    const newUser: IUser = Object.assign(
+                        { accessToken: user.token },
+                        user.business
+                    );
+
+                    this.users$$.next(newUser);
+                })
+            );
     }
 
     registerStudent(userData: IStudentRegisterData) {
@@ -65,8 +92,17 @@ export class AuthService {
 
     registerBusiness(businessData: IBusinessRegister) {
         return this.httpClient
-            .post<IUser>('api/businesses/register', businessData)
-            .pipe(tap((user) => this.users$$.next(user)));
+            .post<IUserAuthResponse>('api/businesses/register', businessData)
+            .pipe(
+                tap((user) => {
+                    const newUser: IUser = Object.assign(
+                        { accessToken: user.token },
+                        user.business
+                    );
+
+                    this.users$$.next(newUser);
+                })
+            );
     }
 
     logout() {
