@@ -1,4 +1,4 @@
-package com.hackaton.project.exceptions;
+package com.hackaton.project.exceptions.user;
 
 public class InvalidUserPostException extends RuntimeException{
     public InvalidUserPostException()  {

@@ -1,4 +1,4 @@
-package com.hackaton.project.exceptions;
+package com.hackaton.project.exceptions.business;
 
 public class BusinessExistsException extends RuntimeException{
     public BusinessExistsException(String field) {

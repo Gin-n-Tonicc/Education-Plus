@@ -1,6 +1,12 @@
 package com.hackaton.project.exceptions;
 
 import com.hackaton.project.dtos.ErrorDTO;
+import com.hackaton.project.exceptions.business.BusinessExistsException;
+import com.hackaton.project.exceptions.business.InvalidBusinessDataException;
+import com.hackaton.project.exceptions.jwts.JWTInvalidException;
+import com.hackaton.project.exceptions.student.InvalidStudentDataException;
+import com.hackaton.project.exceptions.student.StudentExistsException;
+import com.hackaton.project.exceptions.student.StudentNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ProblemDetail;
@@ -11,6 +17,21 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
+
+    @ExceptionHandler(StudentNotFoundException.class)
+    public ResponseEntity<ErrorDTO> handleStudentNotFound(StudentNotFoundException exception) {
+        return new ResponseEntity<>(
+                ErrorDTO.builder()
+                        .withTitle("Student not found")
+                        .withDetails(exception.getMessage())
+                        .withStatus(HttpStatus.BAD_REQUEST.value())
+                        .withErrorType(StudentNotFoundException.class.getSimpleName())
+                        .withErrorCode("SNFE")
+                        .build(),
+                HttpStatus.BAD_REQUEST
+        );
+    }
+
     @ExceptionHandler(JWTInvalidException.class)
     public ResponseEntity<ErrorDTO> handleJWTInvalidException(JWTInvalidException exception) {
         return new ResponseEntity<>(

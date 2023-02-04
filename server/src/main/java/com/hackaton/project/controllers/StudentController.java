@@ -2,7 +2,7 @@ package com.hackaton.project.controllers;
 
 import com.hackaton.project.dtos.*;
 import com.hackaton.project.entities.Student;
-import com.hackaton.project.repositories.StudentRepository;
+import com.hackaton.project.exceptions.student.StudentNotFoundException;
 import com.hackaton.project.services.StudentService;
 import com.hackaton.project.utils.JwtUtilImpl;
 import jakarta.servlet.http.HttpServletRequest;
@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -20,13 +22,27 @@ public class StudentController {
     @Autowired
     JwtUtilImpl jwtUtil;
     @Autowired
-    StudentRepository studentRepository;
-    @Autowired
     StudentService studentService;
 
     @GetMapping
     public List<StudentDTO> getAll() {
         return Arrays.stream(studentService.getAll()).map(StudentDTO::mapToDTO).toList();
+    }
+
+    @GetMapping("/{id}")
+    public StudentProfileDTO getById(@PathVariable("id") Long id) {
+        if (Objects.isNull(id)) {
+            throw new StudentNotFoundException();
+        }
+
+        System.out.println(id);
+        Optional<Student> student = studentService.getById(id);
+
+        if (student.isEmpty()) {
+            throw new StudentNotFoundException();
+        }
+
+        return new StudentProfileDTO(student.get());
     }
 
     @PostMapping("/register")

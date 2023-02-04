@@ -25,8 +25,6 @@ public class Student {
     private String school;
     @NotBlank
     private String town;
-    @NotBlank
-    private String interests;
 
     @Min(14)
     private int age;
@@ -62,14 +60,6 @@ public class Student {
 
     public void setTown(String town) {
         this.town = town;
-    }
-
-    public String getInterests() {
-        return interests;
-    }
-
-    public void setInterests(String interests) {
-        this.interests = interests;
     }
 
     public String getEmail() {
@@ -113,7 +103,6 @@ public class Student {
                 ", password='" + password + '\'' +
                 ", school='" + school + '\'' +
                 ", town='" + town + '\'' +
-                ", interests='" + interests + '\'' +
                 ", age=" + age +
                 '}';
     }

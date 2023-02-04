@@ -1,15 +1,11 @@
 package com.hackaton.project;
 
-import com.hackaton.project.dtos.BusinessResponseDTO;
 import com.hackaton.project.dtos.JwtParseDTO;
-import com.hackaton.project.dtos.StudentResponseDTO;
 import com.hackaton.project.dtos.UserAuthDTO;
-import com.hackaton.project.enums.Role;
-import com.hackaton.project.exceptions.JWTInvalidException;
+import com.hackaton.project.exceptions.jwts.JWTInvalidException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 

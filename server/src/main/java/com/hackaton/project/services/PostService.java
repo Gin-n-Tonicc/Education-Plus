@@ -2,8 +2,8 @@ package com.hackaton.project.services;
 
 import com.hackaton.project.dtos.UserAuthDTO;
 import com.hackaton.project.entities.Post;
-import com.hackaton.project.exceptions.InvalidUserPostException;
-import com.hackaton.project.exceptions.UserIsAuthenticatedException;
+import com.hackaton.project.exceptions.user.InvalidUserPostException;
+import com.hackaton.project.exceptions.user.UserIsAuthenticatedException;
 import com.hackaton.project.repositories.PostRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;

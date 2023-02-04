@@ -1,4 +1,4 @@
-package com.hackaton.project.exceptions;
+package com.hackaton.project.exceptions.student;
 
 public class StudentExistsException extends RuntimeException {
     public StudentExistsException(String field) {
