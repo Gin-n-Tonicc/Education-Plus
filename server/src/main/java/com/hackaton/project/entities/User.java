@@ -1,9 +1,12 @@
-package com.example.demo;
+package com.hackaton.project.entities;
 
+import com.hackaton.project.enums.UserRole;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import org.hibernate.validator.constraints.Length;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 
 @Entity
 public class User {
@@ -11,13 +14,13 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotBlank
-    @Min(2)
+    @Length(min = 2)
     private String fullName;
     @Email
     @NotBlank
     private String email;
     @NotBlank
-    @Min(6)
+    @Length(min = 6)
     private String password;
     @NotBlank
     private String school;
@@ -28,6 +31,7 @@ public class User {
 
     @Min(14)
     private int age;
+    private UserRole role;
 
     public String getFullName() {
         return fullName;
@@ -91,5 +95,27 @@ public class User {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public UserRole getRole() {
+        return role;
+    }
+
+    public void setRole(UserRole role) {
+        this.role = role;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", fullName='" + fullName + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", school='" + school + '\'' +
+                ", town='" + town + '\'' +
+                ", interests='" + interests + '\'' +
+                ", age=" + age +
+                '}';
     }
 }
