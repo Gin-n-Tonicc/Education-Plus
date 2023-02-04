@@ -1,0 +1,91 @@
+<div class="register-form-container d-flex justify-content-center align-items-center">
+    <div class="col-md-4 p-5 shadow-sm border rounded-3">
+        <h2 class="text-center mb-4 text-primary">Register Form</h2>
+        <form [formGroup]="form">
+            <div class="form-checks-container">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" value="student" formControlName="currentForm">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                        Student
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" value="business" formControlName="currentForm">
+                    <label class="form-check-label" for="flexRadioDefault2">
+                        Business
+                    </label>
+                </div>
+            </div>
+
+            <ng-container *ngIf="currentForm === 'student'; then studentForm;"></ng-container>
+            <ng-container *ngIf="currentForm === 'business'; then businessForm;"></ng-container>
+
+            <div *ngIf="currentForm" class="d-grid">
+                <button class="btn btn-primary" type="submit">Register</button>
+            </div>
+        </form>
+        <div class="mt-3">
+            <p class="mb-0  text-center">Have an account? <a href="#" class="text-primary fw-bold">Sign
+                    In</a></p>
+        </div>
+    </div>
+</div>
+
+
+<ng-template #studentForm>
+    <form [formGroup]="currentNestedForm">
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Full Name</label>
+            <input type="text" class="form-control border border-primary" formControlName="fullName">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Email address</label>
+            <input type="email" class="form-control border border-primary" aria-describedby="emailHelp"
+                formControlName="email">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">School</label>
+            <input type="text" class="form-control border border-primary" formControlName="password">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Town</label>
+            <input type="text" class="form-control border border-primary" formControlName="town">
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input type="password" class="form-control border border-primary" formControlName="password">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Repeat Password</label>
+            <input type="password" class="form-control border border-primary" formControlName="repeatPassword">
+        </div>
+    </form>
+</ng-template>
+
+<ng-template #businessForm>
+    <form [formGroup]="currentNestedForm">
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Name</label>
+            <input type="text" class="form-control border border-primary" formControlName="name">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Email address</label>
+            <input type="email" class="form-control border border-primary" aria-describedby="emailHelp"
+                formControlName="email">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Description</label>
+            <input type="text" class="form-control border border-primary" formControlName="description">
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input type="password" class="form-control border border-primary" formControlName="password">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Repeat Password</label>
+            <input type="password" class="form-control border border-primary" formControlName="repeatPassword">
+        </div>
+    </form>
+</ng-template>

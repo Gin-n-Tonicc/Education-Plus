@@ -3,6 +3,6 @@ export enum Pages {
     NotFound = 'not-found',
     Profile = 'profile',
     Login = 'login',
-    SignUp = 'signup',
+    Register = 'register',
     Logout = 'logout',
 }

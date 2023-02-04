@@ -1,0 +1,19 @@
+.header {
+    background-color: var(--primary-clr-lighter);
+    font-size: 1.5rem;
+    color: black;
+    padding: 1rem 5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header ul {
+    display: flex;
+    margin: 0;
+    gap: 20px;
+}
+
+.header ul li {
+    cursor: pointer;
+}

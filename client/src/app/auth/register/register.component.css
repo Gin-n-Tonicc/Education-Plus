@@ -1,0 +1,10 @@
+.register-form-container {
+    width: 100vw;
+    margin-top: 2vh;
+}
+
+.form-checks-container {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 1rem;
+}
