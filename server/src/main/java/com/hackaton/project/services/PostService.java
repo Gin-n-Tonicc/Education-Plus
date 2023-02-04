@@ -34,8 +34,7 @@ public class PostService {
             throw new InvalidUserPostException();
         }
         post.setBusinessId(optionalUser.getId());
-        postRepository.save(post);
-        return post;
+        return postRepository.save(post);
     }
 
 }

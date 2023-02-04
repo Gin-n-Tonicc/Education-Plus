@@ -1,6 +1,5 @@
 package com.hackaton.project.dtos;
 
-import com.hackaton.project.entities.Business;
 import com.hackaton.project.entities.Post;
 
 import java.sql.Date;
