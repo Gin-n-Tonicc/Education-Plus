@@ -1,11 +1,9 @@
 package com.hackaton.project.dtos;
 
-import com.hackaton.project.entities.Student;
-
-public class StudentRegisterDTO {
+public class StudentResponseDTO {
     private String token;
     private UserAuthDTO student;
-    public StudentRegisterDTO(String token, UserAuthDTO student) {
+    public StudentResponseDTO(String token, UserAuthDTO student) {
         this.token = token;
         this.student = student;
     }

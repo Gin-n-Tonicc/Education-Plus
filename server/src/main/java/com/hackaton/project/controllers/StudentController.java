@@ -30,25 +30,26 @@ public class StudentController {
     }
 
     @PostMapping("/register")
-    public StudentRegisterDTO submitUser(@Valid @RequestBody Student user) {
+    public StudentResponseDTO submitUser(@Valid @RequestBody Student user) {
         Student submittedUser = studentService.submitStudent(user);
         UserDTO userAuthDTO = StudentDTO.mapToDTO(submittedUser);
         String token = jwtUtil.encode(userAuthDTO);
 
-        return new StudentRegisterDTO(token, userAuthDTO);
+        return new StudentResponseDTO(token, userAuthDTO);
     }
     @PostMapping("/login")
-    public String loginUser(HttpServletRequest request, @Valid @RequestBody StudentLoginDTO userLoginDTO) {
+    public StudentResponseDTO loginUser(HttpServletRequest request, @Valid @RequestBody StudentLoginDTO userLoginDTO) {
         Student loggedUser = studentService.loginStudent(userLoginDTO);
         UserDTO userAuthDTO = StudentDTO.mapToDTO(loggedUser);
+        String token = jwtUtil.encode(userAuthDTO);
 
         System.out.println(request.getAttribute("user") + " " + request.getAttribute("isAuthenticated"));
-        return jwtUtil.encode(userAuthDTO);
+        return new StudentResponseDTO(token, userAuthDTO);
     }
 
-    @PostMapping("/test")
-    public String test(HttpServletRequest request, @Valid @RequestBody StudentLoginDTO studentLoginDTO) {
-        request.getAttribute("user");
-        return "true";
+    @PostMapping("/me")
+    public UserDTO details(HttpServletRequest request) {
+        UserDTO user = (UserDTO) request.getAttribute("user");
+        return user;
     }
 }

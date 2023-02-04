@@ -2,3 +2,18 @@
     width: 100vw;
     margin-top: 12vh;
 }
+
+.form-checks-container {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 1rem;
+}
+
+.error {
+    color: red;
+}
+
+.disabled-btn {
+    opacity: 0.7;
+    cursor: not-allowed;
+}

@@ -1,18 +1,27 @@
 <div class="login-form-container d-flex justify-content-center align-items-center">
     <div class="col-md-4 p-5 shadow-sm border rounded-3">
         <h2 class="text-center mb-4 text-primary">Login Form</h2>
-        <form>
-            <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Email address</label>
-                <input type="email" class="form-control border border-primary" id="exampleInputEmail1"
-                    aria-describedby="emailHelp">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="form-checks-container">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" value="student" formControlName="currentForm">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                        Student
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" value="business" formControlName="currentForm">
+                    <label class="form-check-label" for="flexRadioDefault2">
+                        Business
+                    </label>
+                </div>
             </div>
-            <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Password</label>
-                <input type="password" class="form-control border border-primary" id="exampleInputPassword1">
-            </div>
-            <div class="d-grid">
-                <button class="btn btn-primary" type="submit">Login</button>
+
+            <ng-template *ngIf="currentForm then nestedFormTemplate;"></ng-template>
+
+            <div *ngIf="currentForm" class="d-grid">
+                <button class="btn btn-primary" type="submit"
+                    [ngClass]="{'disabled-btn': nestedForm.invalid && nestedForm.touched}">Login</button>
             </div>
         </form>
         <div class="mt-3">
@@ -21,3 +30,36 @@
         </div>
     </div>
 </div>
+
+<ng-template #nestedFormTemplate>
+    <form [formGroup]="nestedForm">
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Email address</label>
+            <input type="email" class="form-control border border-primary" aria-describedby="emailHelp"
+                formControlName="email">
+            <ng-container *ngIf="nestedForm.get('email')?.touched">
+                <p class="error" *ngIf="nestedForm.get('email')?.getError('required')">Email is
+                    required!</p>
+                <p class="error" *ngIf="nestedForm.get('email')?.getError('email')">Email
+                    must be a valid
+                    email!
+                </p>
+            </ng-container>
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input type="password" class="form-control border border-primary" formControlName="password">
+            <ng-container *ngIf="nestedForm.get('password')?.touched">
+                <p class="error" *ngIf="nestedForm.get('password')?.getError('required')">
+                    Password is
+                    required!</p>
+                <p class="error" *ngIf="nestedForm.get('password')?.getError('minlength')">
+                    Length of minimum
+                    6
+                    characters is required.
+                </p>
+            </ng-container>
+        </div>
+    </form>
+</ng-template>

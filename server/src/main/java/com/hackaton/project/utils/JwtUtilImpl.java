@@ -16,7 +16,7 @@ import java.util.Date;
 public class JwtUtilImpl {
     private final String PAYLOAD_NAME = "payload";
     private String jwtSecret = "disajidahsuhHDASUUHui31iu31IUGIGIDHIU1JIHDASHUIDUIASHIGHFYUEWGFEWGGFEWGFUEWGYUDHEWUHDUEWUYIGFWYEGFUWEFGWUEGFYUWEGFYUWEUFWBUCWBEYUFGEWYUCGBCEWYUGBUYCEWIURH";
-    private long tokenValidityMilliseconds = 1000000000;
+    private long tokenValidityMilliseconds = 999999999;
     @Autowired
     private ModelMapper modelMapper;
 
