@@ -3,7 +3,6 @@ package com.hackaton.project.controllers;
 import com.hackaton.project.dtos.BusinessDTO;
 import com.hackaton.project.dtos.BusinessLoginDTO;
 import com.hackaton.project.entities.Business;
-import com.hackaton.project.repositories.BusinessRepository;
 import com.hackaton.project.services.BusinessService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
