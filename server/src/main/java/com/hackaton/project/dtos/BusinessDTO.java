@@ -10,7 +10,8 @@ public class BusinessDTO extends UserDTO {
         return new BusinessDTO(business.getId(), business.getName(), business.getDescription() ,business.getEmail(), business.getPlaceOfResidence(), business.getRole());
     }
 
-    public BusinessDTO(Long id, String name, String description, String email, String placeOfResidence, Role role) {
+
+    private BusinessDTO(Long id, String name, String description, String email, String placeOfResidence, Role role) {
         super(id, name, email, role);
         this.description = description;
         this.placeOfResidence = placeOfResidence;

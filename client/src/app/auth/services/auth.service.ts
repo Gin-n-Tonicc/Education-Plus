@@ -110,17 +110,16 @@ export class AuthService {
     }
 
     userDetails() {
-        return this.httpClient.get<IUser>('api/users/me').pipe(
+        return this.httpClient.get<IUserAuthResponse>('api/me').pipe(
             withLatestFrom(this.user$),
-            tap(
-                ([userFromReq, oldUser]: [
-                    Omit<IUser, 'accessToken'>,
-                    IUser | null
-                ]) => {
-                    Object.assign(oldUser || {}, userFromReq);
-                    this.users$$.next(oldUser);
-                }
-            )
+            tap(([userFromReq, oldUser]: [IUserAuthResponse, IUser | null]) => {
+                Object.assign(oldUser || {}, {
+                    ...userFromReq.user,
+                    accessToken: userFromReq.token,
+                });
+
+                this.users$$.next(oldUser);
+            })
         );
     }
 

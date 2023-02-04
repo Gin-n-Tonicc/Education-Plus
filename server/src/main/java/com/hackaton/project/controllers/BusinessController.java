@@ -30,17 +30,17 @@ public class BusinessController {
     @PostMapping("/register")
     public BusinessResponseDTO submitBusiness(@Valid @RequestBody Business business) {
         Business submittedBusiness = businessService.submitBusiness(business);
-        UserAuthDTO userAuthDTO = BusinessDTO.mapToDTO(submittedBusiness);
-        String token = jwtUtil.encode(userAuthDTO);
+        BusinessDTO businessDTO = BusinessDTO.mapToDTO(submittedBusiness);
+        String token = jwtUtil.encode(businessDTO);
 
-        return new BusinessResponseDTO(token, userAuthDTO);
+        return new BusinessResponseDTO(token, businessDTO);
     }
     @PostMapping("/login")
     public BusinessResponseDTO loginBusiness(@Valid @RequestBody BusinessLoginDTO businessLoginDTO) {
         Business loggedBusiness = businessService.loginBusiness(businessLoginDTO);
-        UserAuthDTO userAuthDTO = BusinessDTO.mapToDTO(loggedBusiness);
-        String token = jwtUtil.encode(userAuthDTO);
+        BusinessDTO businessDTO = BusinessDTO.mapToDTO(loggedBusiness);
+        String token = jwtUtil.encode(businessDTO);
 
-        return new BusinessResponseDTO(token, userAuthDTO);
+        return new BusinessResponseDTO(token, businessDTO);
     }
 }

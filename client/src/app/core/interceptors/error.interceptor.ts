@@ -34,6 +34,10 @@ export class ErrorInterceptor implements HttpInterceptor {
         request: HttpRequest<unknown>,
         next: HttpHandler
     ): Observable<HttpEvent<unknown>> {
+        if (!this.authService.initialAuthenticate) {
+            return next.handle(request);
+        }
+
         return next.handle(request).pipe(
             catchError((err: HttpErrorResponse) =>
                 of(err).pipe(

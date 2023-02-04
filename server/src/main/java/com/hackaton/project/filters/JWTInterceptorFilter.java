@@ -30,7 +30,6 @@ public class JWTInterceptorFilter extends OncePerRequestFilter {
     }
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        System.out.println("filterings");
         response.setHeader("Access-Control-Allow-Origin", request.getHeader("Origin"));
         response.setHeader("Access-Control-Allow-Credentials", "true");
         response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
@@ -60,6 +59,7 @@ public class JWTInterceptorFilter extends OncePerRequestFilter {
 
                 request.setAttribute("user", decodedUser);
                 request.setAttribute("isAuthenticated", decodedUser);
+                request.setAttribute("token", token);
             }
 
         filterChain.doFilter(request, response);

@@ -1,5 +1,6 @@
 package com.hackaton.project.utils;
 
+import com.hackaton.project.dtos.BusinessDTO;
 import com.hackaton.project.dtos.UserAuthDTO;
 import com.hackaton.project.dtos.UserDTO;
 import com.hackaton.project.exceptions.JWTExpiredException;
@@ -37,6 +38,7 @@ public class JwtUtilImpl {
                 .build()
                 .parseClaimsJws(jwt)
                 .getBody();
+
         Date expirationDate = claims.getExpiration();
 
         try {

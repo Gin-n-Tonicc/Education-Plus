@@ -46,10 +46,4 @@ public class StudentController {
         System.out.println(request.getAttribute("user") + " " + request.getAttribute("isAuthenticated"));
         return new StudentResponseDTO(token, userAuthDTO);
     }
-
-    @PostMapping("/me")
-    public UserDTO details(HttpServletRequest request) {
-        UserDTO user = (UserDTO) request.getAttribute("user");
-        return user;
-    }
 }

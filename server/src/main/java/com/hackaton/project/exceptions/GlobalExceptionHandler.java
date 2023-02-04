@@ -11,6 +11,20 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
+    @ExceptionHandler(JWTInvalidException.class)
+    public ResponseEntity<ErrorDTO> handleJWTInvalidException(JWTInvalidException exception) {
+        return new ResponseEntity<>(
+                ErrorDTO.builder()
+                        .withTitle("Invalid JWT")
+                        .withDetails(exception.getMessage())
+                        .withStatus(HttpStatus.UNAUTHORIZED.value())
+                        .withErrorType(JWTInvalidException.class.getSimpleName())
+                        .withErrorCode("JIE0")
+                        .build(),
+                HttpStatus.UNAUTHORIZED
+        );
+    }
+
     @ExceptionHandler(StudentExistsException.class)
     public ResponseEntity<ErrorDTO> handleStudentExistsException(StudentExistsException exception) {
         return new ResponseEntity<>(
