@@ -1,39 +1,19 @@
 package com.hackaton.project.dtos;
 
 import com.hackaton.project.entities.Business;
+import com.hackaton.project.enums.Role;
 
-public class BusinessDTO {
-    private Long id;
-    private String name;
+public class BusinessDTO extends UserDTO {
     private String description;
     private String placeOfResidence;
-    private String email;
     public static BusinessDTO mapToDTO(Business business){
-        return new BusinessDTO(business.getId(), business.getName(), business.getDescription() ,business.getEmail(), business.getPlaceOfResidence());
+        return new BusinessDTO(business.getId(), business.getName(), business.getDescription() ,business.getEmail(), business.getPlaceOfResidence(), business.getRole());
     }
 
-    public BusinessDTO(Long id, String name, String description, String placeOfResidence, String email) {
-        this.id = id;
-        this.name = name;
+    public BusinessDTO(Long id, String name, String description, String email, String placeOfResidence, Role role) {
+        super(id, name, email, role);
         this.description = description;
         this.placeOfResidence = placeOfResidence;
-        this.email = email;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getDescription() {
@@ -42,5 +22,13 @@ public class BusinessDTO {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getPlaceOfResidence() {
+        return placeOfResidence;
+    }
+
+    public void setPlaceOfResidence(String placeOfResidence) {
+        this.placeOfResidence = placeOfResidence;
     }
 }
