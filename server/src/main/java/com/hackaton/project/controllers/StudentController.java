@@ -1,9 +1,6 @@
 package com.hackaton.project.controllers;
 
-import com.hackaton.project.dtos.StudentDTO;
-import com.hackaton.project.dtos.StudentLoginDTO;
-import com.hackaton.project.dtos.UserAuthDTO;
-import com.hackaton.project.dtos.UserDTO;
+import com.hackaton.project.dtos.*;
 import com.hackaton.project.entities.Student;
 import com.hackaton.project.repositories.StudentRepository;
 import com.hackaton.project.services.StudentService;
@@ -16,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Arrays;
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/students")
 public class StudentController {
@@ -32,11 +30,12 @@ public class StudentController {
     }
 
     @PostMapping("/register")
-    public String submitUser(@Valid @RequestBody Student user) {
+    public StudentRegisterDTO submitUser(@Valid @RequestBody Student user) {
         Student submittedUser = studentService.submitStudent(user);
         UserDTO userAuthDTO = StudentDTO.mapToDTO(submittedUser);
+        String token = jwtUtil.encode(userAuthDTO);
 
-        return jwtUtil.encode(userAuthDTO);
+        return new StudentRegisterDTO(token, userAuthDTO);
     }
     @PostMapping("/login")
     public String loginUser(HttpServletRequest request, @Valid @RequestBody StudentLoginDTO userLoginDTO) {
@@ -44,7 +43,6 @@ public class StudentController {
         UserDTO userAuthDTO = StudentDTO.mapToDTO(loggedUser);
 
         System.out.println(request.getAttribute("user") + " " + request.getAttribute("isAuthenticated"));
-
         return jwtUtil.encode(userAuthDTO);
     }
 

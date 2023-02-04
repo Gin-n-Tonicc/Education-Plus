@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BehaviorSubject } from 'rxjs';
@@ -18,7 +17,6 @@ import { SharedModule } from './shared/shared.module';
 @NgModule({
     declarations: [AppComponent],
     imports: [
-        HttpClientModule,
         NgbModule,
         BrowserModule,
         RouterModule,
