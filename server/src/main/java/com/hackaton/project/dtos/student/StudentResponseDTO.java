@@ -1,4 +1,6 @@
-package com.hackaton.project.dtos;
+package com.hackaton.project.dtos.student;
+
+import com.hackaton.project.dtos.user.UserAuthDTO;
 
 public class StudentResponseDTO {
     private String token;

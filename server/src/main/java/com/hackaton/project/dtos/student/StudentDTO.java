@@ -1,5 +1,6 @@
-package com.hackaton.project.dtos;
+package com.hackaton.project.dtos.student;
 
+import com.hackaton.project.dtos.user.UserDTO;
 import com.hackaton.project.entities.Student;
 import com.hackaton.project.enums.Role;
 

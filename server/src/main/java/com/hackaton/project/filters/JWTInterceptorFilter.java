@@ -2,8 +2,8 @@ package com.hackaton.project.filters;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.hackaton.project.dtos.ErrorDTO;
-import com.hackaton.project.dtos.UserAuthDTO;
+import com.hackaton.project.dtos.common.ErrorDTO;
+import com.hackaton.project.dtos.user.UserAuthDTO;
 import com.hackaton.project.exceptions.jwts.JWTExpiredException;
 import com.hackaton.project.utils.JwtUtilImpl;
 import jakarta.servlet.FilterChain;

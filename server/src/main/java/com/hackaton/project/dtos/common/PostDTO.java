@@ -1,4 +1,4 @@
-package com.hackaton.project.dtos;
+package com.hackaton.project.dtos.common;
 
 import com.hackaton.project.entities.Post;
 

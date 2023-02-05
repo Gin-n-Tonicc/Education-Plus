@@ -1,4 +1,6 @@
-package com.hackaton.project.dtos;
+package com.hackaton.project.dtos.business;
+
+import com.hackaton.project.dtos.user.UserAuthDTO;
 
 public class BusinessResponseDTO {
     private String token;

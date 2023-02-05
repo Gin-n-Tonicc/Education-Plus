@@ -1,10 +1,10 @@
 package com.hackaton.project.controllers;
 
-import com.hackaton.project.dtos.BusinessDTO;
-import com.hackaton.project.dtos.BusinessLoginDTO;
-import com.hackaton.project.dtos.BusinessResponseDTO;
-import com.hackaton.project.dtos.UserAuthDTO;
+import com.hackaton.project.dtos.business.BusinessDTO;
+import com.hackaton.project.dtos.business.BusinessLoginDTO;
+import com.hackaton.project.dtos.business.BusinessResponseDTO;
 import com.hackaton.project.entities.Business;
+import com.hackaton.project.exceptions.common.EntityNotFoundException;
 import com.hackaton.project.services.BusinessService;
 import com.hackaton.project.utils.JwtUtilImpl;
 import jakarta.validation.Valid;
@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/businesses")
@@ -25,6 +27,23 @@ public class BusinessController {
     @GetMapping
     public List<BusinessDTO> getAll() {
         return Arrays.stream(businessService.getAll()).map(BusinessDTO::mapToDTO).toList();
+    }
+
+    @GetMapping("/{id}")
+    public BusinessDTO getById(@PathVariable("id") Long id) throws EntityNotFoundException {
+        EntityNotFoundException exception = new EntityNotFoundException(Business.class.getSimpleName());
+
+        if (Objects.isNull(id)) {
+            throw exception;
+        }
+
+        Optional<Business> business = businessService.getById(id);
+
+        if (business.isEmpty()) {
+            throw exception;
+        }
+
+        return BusinessDTO.mapToDTO(business.get());
     }
 
     @PostMapping("/register")

@@ -1,4 +1,4 @@
-package com.hackaton.project.dtos;
+package com.hackaton.project.dtos.business;
 
 public class BusinessLoginDTO {
     private String email;

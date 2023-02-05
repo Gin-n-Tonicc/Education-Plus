@@ -1,9 +1,6 @@
 package com.hackaton.project.controllers;
 
-import com.hackaton.project.dtos.BusinessDTO;
-import com.hackaton.project.dtos.BusinessLoginDTO;
-import com.hackaton.project.dtos.PostDTO;
-import com.hackaton.project.entities.Business;
+import com.hackaton.project.dtos.common.PostDTO;
 import com.hackaton.project.entities.Post;
 import com.hackaton.project.services.PostService;
 import jakarta.servlet.http.HttpServletRequest;

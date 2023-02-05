@@ -1,6 +1,6 @@
 package com.hackaton.project.utils;
 
-import com.hackaton.project.dtos.UserAuthDTO;
+import com.hackaton.project.dtos.user.UserAuthDTO;
 import com.hackaton.project.exceptions.jwts.JWTExpiredException;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

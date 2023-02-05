@@ -1,6 +1,6 @@
 package com.hackaton.project.services;
 
-import com.hackaton.project.dtos.BusinessLoginDTO;
+import com.hackaton.project.dtos.business.BusinessLoginDTO;
 import com.hackaton.project.entities.Business;
 import com.hackaton.project.enums.Role;
 import com.hackaton.project.exceptions.business.BusinessExistsException;
@@ -17,6 +17,10 @@ import java.util.Optional;
 public class BusinessService {
     @Autowired
     BusinessRepository businessRepository;
+
+    public Optional<Business> getById(Long id) {
+        return businessRepository.findById(id);
+    }
     public Business submitBusiness(@Valid @RequestBody Business business) {
         Optional<Business> optionalBusiness = businessRepository.findOneByEmail(business.getEmail());
         business.setRole(Role.BUSINESS);

@@ -1,4 +1,6 @@
-package com.hackaton.project.dtos;
+package com.hackaton.project.dtos.jwt;
+
+import com.hackaton.project.dtos.user.UserAuthDTO;
 
 public class JwtParseDTO {
     private String token;

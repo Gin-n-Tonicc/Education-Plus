@@ -1,6 +1,6 @@
-package com.hackaton.project.dtos;
+package com.hackaton.project.dtos.student;
 
-public class LoginDTO {
+public class StudentLoginDTO {
     private String email;
     private String password;
 

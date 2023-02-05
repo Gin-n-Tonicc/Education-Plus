@@ -1,4 +1,4 @@
-package com.hackaton.project.dtos;
+package com.hackaton.project.dtos.common;
 
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;

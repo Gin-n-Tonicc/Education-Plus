@@ -1,4 +1,4 @@
-package com.hackaton.project.dtos;
+package com.hackaton.project.dtos.user;
 
 import com.hackaton.project.enums.Role;
 

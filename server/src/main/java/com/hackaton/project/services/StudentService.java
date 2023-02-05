@@ -1,6 +1,6 @@
 package com.hackaton.project.services;
 
-import com.hackaton.project.dtos.StudentLoginDTO;
+import com.hackaton.project.dtos.student.StudentLoginDTO;
 import com.hackaton.project.entities.Student;
 import com.hackaton.project.enums.Role;
 import com.hackaton.project.exceptions.student.InvalidStudentDataException;

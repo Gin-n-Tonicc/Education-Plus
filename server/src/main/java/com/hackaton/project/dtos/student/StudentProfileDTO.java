@@ -1,7 +1,6 @@
-package com.hackaton.project.dtos;
+package com.hackaton.project.dtos.student;
 
 import com.hackaton.project.entities.Student;
-import com.hackaton.project.enums.Role;
 
 public class StudentProfileDTO extends StudentDTO {
     String school;

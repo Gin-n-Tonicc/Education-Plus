@@ -1,8 +1,12 @@
 package com.hackaton.project.controllers;
 
-import com.hackaton.project.dtos.*;
+import com.hackaton.project.dtos.student.StudentDTO;
+import com.hackaton.project.dtos.student.StudentLoginDTO;
+import com.hackaton.project.dtos.student.StudentProfileDTO;
+import com.hackaton.project.dtos.student.StudentResponseDTO;
+import com.hackaton.project.dtos.user.UserDTO;
 import com.hackaton.project.entities.Student;
-import com.hackaton.project.exceptions.student.StudentNotFoundException;
+import com.hackaton.project.exceptions.common.EntityNotFoundException;
 import com.hackaton.project.services.StudentService;
 import com.hackaton.project.utils.JwtUtilImpl;
 import jakarta.servlet.http.HttpServletRequest;
@@ -30,16 +34,17 @@ public class StudentController {
     }
 
     @GetMapping("/{id}")
-    public StudentProfileDTO getById(@PathVariable("id") Long id) {
+    public StudentProfileDTO getById(@PathVariable("id") Long id) throws EntityNotFoundException {
+        EntityNotFoundException exception = new EntityNotFoundException(Student.class.getSimpleName());
+
         if (Objects.isNull(id)) {
-            throw new StudentNotFoundException();
+            throw exception;
         }
 
-        System.out.println(id);
         Optional<Student> student = studentService.getById(id);
 
         if (student.isEmpty()) {
-            throw new StudentNotFoundException();
+            throw exception;
         }
 
         return new StudentProfileDTO(student.get());

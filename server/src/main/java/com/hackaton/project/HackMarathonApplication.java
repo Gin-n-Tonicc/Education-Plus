@@ -1,7 +1,7 @@
 package com.hackaton.project;
 
-import com.hackaton.project.dtos.JwtParseDTO;
-import com.hackaton.project.dtos.UserAuthDTO;
+import com.hackaton.project.dtos.jwt.JwtParseDTO;
+import com.hackaton.project.dtos.user.UserAuthDTO;
 import com.hackaton.project.exceptions.jwts.JWTInvalidException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.boot.SpringApplication;
