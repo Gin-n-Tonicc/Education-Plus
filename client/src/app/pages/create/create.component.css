@@ -1,0 +1,12 @@
+.create-form-container {
+    width: 100vw;
+}
+
+.error {
+    color: red;
+}
+
+.disabled-btn {
+    opacity: 0.7;
+    cursor: not-allowed;
+}

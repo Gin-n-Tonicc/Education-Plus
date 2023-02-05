@@ -20,6 +20,22 @@ public class PostController {
     public List<PostDTO> getAll() {
         return Arrays.stream(postService.getAll()).map(PostDTO::mapToDTO).toList();
     }
+
+    @GetMapping("/{id}")
+    public PostDTO getById(@PathVariable("id") Long id) {
+        return PostDTO.mapToDTO(postService.getById(id));
+    }
+
+    @GetMapping("/recent")
+    public List<PostDTO> getRecentByLimit() {
+        return Arrays.stream(postService.getPostsByLimit()).map(PostDTO::mapToDTO).toList();
+    }
+
+    @GetMapping("/recent/{businessId}")
+    public List<PostDTO> getRecentById(@PathVariable("businessId") Long businessId) {
+        return Arrays.stream(postService.getRecentPostsById(businessId)).map(PostDTO::mapToDTO).toList();
+    }
+
     @PostMapping("/create")
     public PostDTO createPost(HttpServletRequest request, @Valid @RequestBody Post post) {
         Post createPost = postService.createPost(request, post);

@@ -7,6 +7,7 @@ import { AuthenticateComponent } from './authenticate/authenticate.component';
 import { ErrorComponent } from './error/error.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
+import { HomePostCardComponent } from './components/home-post-card/home-post-card.component';
 
 @NgModule({
     declarations: [
@@ -14,6 +15,7 @@ import { HomeComponent } from './home/home.component';
         HomeComponent,
         ErrorComponent,
         AuthenticateComponent,
+        HomePostCardComponent,
     ],
     imports: [NgbAlertModule, CommonModule, RouterModule, ReactiveFormsModule],
     exports: [

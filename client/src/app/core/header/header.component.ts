@@ -19,6 +19,12 @@ export class HeaderComponent implements OnInit {
         return this.authService.isUserAuthenticated;
     }
 
+    get isBusiness() {
+        return (
+            this.isAuthenticated && this.authService.user?.role === 'BUSINESS'
+        );
+    }
+
     constructor(
         private authService: AuthService,
         private router: Router,

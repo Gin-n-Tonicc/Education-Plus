@@ -1,0 +1,117 @@
+<div class="create-form-container d-flex justify-content-center align-items-center">
+    <div class="col-md-4 p-5 shadow-sm border rounded-3">
+        <h2 class="text-center mb-4 text-primary">Create Form</h2>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Description</label>
+                <input type="text" class="form-control border border-primary" aria-describedby="description"
+                    formControlName="description">
+                <ng-container *ngIf="form.get('description')?.touched">
+                    <p class="error" *ngIf="form.get('description')?.getError('required')">Description is
+                        required!</p>
+                </ng-container>
+            </div>
+
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Category</label>
+                <input type="text" class="form-control border border-primary" aria-describedby="category"
+                    formControlName="category">
+                <ng-container *ngIf="form.get('category')?.touched">
+                    <p class="error" *ngIf="form.get('category')?.getError('required')">Category is
+                        required!</p>
+                </ng-container>
+            </div>
+
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Interests</label>
+                <input type="text" class="form-control border border-primary" aria-describedby="interests"
+                    formControlName="interests">
+                <ng-container *ngIf="form.get('interests')?.touched">
+                    <p class="error" *ngIf="form.get('interests')?.getError('required')">Interest is
+                        required!</p>
+                </ng-container>
+            </div>
+
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Age Group</label>
+                <input type="text" class="form-control border border-primary" aria-describedby="ageGroup"
+                    formControlName="ageGroup">
+                <ng-container *ngIf="form.get('ageGroup')?.touched">
+                    <p class="error" *ngIf="form.get('ageGroup')?.getError('required')">Age group is
+                        required!</p>
+                </ng-container>
+            </div>
+
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Requirements</label>
+                <input type="text" class="form-control border border-primary" aria-describedby="requirements"
+                    formControlName="requirements">
+                <ng-container *ngIf="form.get('requirements')?.touched">
+                    <p class="error" *ngIf="form.get('requirements')?.getError('required')">Requirement is
+                        required!</p>
+                </ng-container>
+            </div>
+
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Link to application</label>
+                <input type="text" class="form-control border border-primary" aria-describedby="linkToApplicationForm"
+                    formControlName="linkToApplicationForm">
+                <ng-container *ngIf="form.get('linkToApplicationForm')?.touched">
+                    <p class="error" *ngIf="form.get('linkToApplicationForm')?.getError('required')">Link to application
+                        is
+                        required!</p>
+                </ng-container>
+            </div>
+
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Place</label>
+                <input type="text" class="form-control border border-primary" aria-describedby="place"
+                    formControlName="place">
+                <ng-container *ngIf="form.get('place')?.touched">
+                    <p class="error" *ngIf="form.get('place')?.getError('required')">Place is
+                        required!</p>
+                </ng-container>
+            </div>
+
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Deadline to participate</label>
+                <input type="date" class="form-control border border-primary" aria-describedby="startDate"
+                    formControlName="deadlineToParticipate">
+                <ng-container *ngIf="form.get('deadlineToParticipate')?.touched">
+                    <p class="error" *ngIf="form.get('deadlineToParticipate')?.getError('required')">Deadline to
+                        participate is
+                        required!</p>
+                </ng-container>
+            </div>
+
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Start Date</label>
+                <input type="date" class="form-control border border-primary" aria-describedby="startDate"
+                    formControlName="startDate">
+                <ng-container *ngIf="form.get('startDate')?.touched">
+                    <p class="error" *ngIf="form.get('startDate')?.getError('required')">Start date is
+                        required!</p>
+                </ng-container>
+            </div>
+
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">End Date</label>
+                <input type="date" class="form-control border border-primary" aria-describedby="endDate"
+                    formControlName="endDate">
+                <ng-container *ngIf="form.get('endDate')?.touched">
+                    <p class="error" *ngIf="form.get('endDate')?.getError('required')">End date is
+                        required!</p>
+                </ng-container>
+            </div>
+
+            <div class="d-grid">
+                <button class="btn btn-primary" type="submit"
+                    [ngClass]="{'disabled-btn': form.invalid && form.touched}">Create</button>
+            </div>
+        </form>
+        <div class="mt-3">
+            <p class="mb-0  text-center">Don't have an account? <a href="#" class="text-primary fw-bold">Sign
+                    Up</a></p>
+        </div>
+    </div>
+</div>

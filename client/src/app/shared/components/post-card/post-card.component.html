@@ -1,0 +1,8 @@
+<div class="card">
+    <div class="card-body" [routerLink]="'/details/' + post.id">
+        <h5 class="card-title">{{post.category}}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">{{post.place}}</h6>
+        <h6 class="card-subtitle mb-2 text-muted">{{post.linkToApplicationForm}}</h6>
+        <p class="card-text">{{post.description}}</p>
+    </div>
+</div>

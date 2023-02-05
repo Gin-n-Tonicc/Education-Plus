@@ -1,0 +1,79 @@
+<ng-container *ngIf="postData">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="fit-auto my-3">
+                    <h2 style="color:#6495ED; text-align: center;">
+                        <p style="text-align: center;">Post</p>
+                        <p style="text-align: center;">{{postData.category}}</p>
+                        <a style="text-align: center;" *ngIf="businessData"
+                            [routerLink]="'/profile/' + businessData.id">By: {{businessData.name}}</a>
+                    </h2>
+                    <hr>
+                </div>
+                <div class="row mb-5 gx-5">
+                    <div class="fit-auto custom col-xxl-8 mb-5 mb-xxl-0">
+                        <div class="custom-relative bg-secondary-soft px-4 py-5 rounded">
+
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label style="color:#6495ED">Category</label>
+                                    <input type="text" readonly class="form-control" placeholder=""
+                                        aria-label="Category" [value]="postData.category">
+                                </div>
+                                <div class="col-md-6">
+                                    <label style="color:#6495ED">Description</label>
+                                    <input type="text" readonly class="form-control" placeholder="" aria-label="Email"
+                                        [value]="postData.description">
+                                </div>
+                                <div class="col-md-6">
+                                    <label style="color:#6495ED">Interests</label>
+                                    <input type="text" readonly class="form-control" placeholder=""
+                                        aria-label="interests" [value]="postData.interests">
+                                </div>
+                                <div class="col-md-6">
+                                    <label style="color:#6495ED">Age Group</label>
+                                    <input type="text" readonly class="form-control" placeholder=""
+                                        aria-label="ageGroup" [value]="postData.ageGroup">
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label style="color:#6495ED">Requirements</label>
+                                    <input type="text" readonly class="form-control" placeholder=""
+                                        aria-label="Full name" [value]="postData.requirements">
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label style="color:#6495ED">Deadline To Participate</label>
+                                    <input type="text" readonly class="form-control" placeholder=""
+                                        aria-label="deadlineToParticipate" [value]="postData.deadlineToParticipate">
+                                </div>
+                                <div class="col-md-6">
+                                    <label style="color:#6495ED">Link to application form</label>
+                                    <input type="text" readonly class="form-control" placeholder=""
+                                        aria-label="linkToApplicationForm" [value]="postData.linkToApplicationForm">
+                                </div>
+                                <div class="col-md-6">
+                                    <label style="color:#6495ED">Place</label>
+                                    <input type="text" readonly class="form-control" placeholder="" aria-label="place"
+                                        [value]="postData.place">
+                                </div>
+                                <div class="col-md-6">
+                                    <label style="color:#6495ED">Start Date</label>
+                                    <input type="text" readonly class="form-control" placeholder=""
+                                        aria-label="startDate" [value]="postData.startDate">
+                                </div>
+                                <div class="col-md-6">
+                                    <label style="color:#6495ED">End Date</label>
+                                    <input type="text" readonly class="form-control" placeholder="" aria-label="endDate"
+                                        [value]="postData.endDate">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</ng-container>

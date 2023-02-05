@@ -4,56 +4,10 @@
     <div class="recent-posts-container">
         <h3 class="recent-posts">Recent Posts</h3>
         <div class="cards-container">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Digital Targovishte</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Targovishte</h6>
-                    <p class="card-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit
-                        corrupti
-                        earum
-                        magni repellat ratione in dolores voluptas eos numquam. Voluptatibus nulla dolores sint aut
-                        veniam
-                        est
-                        officia accusamus modi explicabo.</p>
-                    <a href="#" class="card-link">View</a>
-                    <a href="#" class="card-link">Edit</a>
-                    <a href="#" class="card-link">Delete</a>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Digital Targovishte</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Targovishte</h6>
-                    <p class="card-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit
-                        corrupti
-                        earum
-                        magni repellat ratione in dolores voluptas eos numquam. Voluptatibus nulla dolores sint aut
-                        veniam
-                        est
-                        officia accusamus modi explicabo.</p>
-                    <a href="#" class="card-link">View</a>
-                    <a href="#" class="card-link">Edit</a>
-                    <a href="#" class="card-link">Delete</a>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Digital Targovishte</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Targovishte</h6>
-                    <p class="card-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit
-                        corrupti
-                        earum
-                        magni repellat ratione in dolores voluptas eos numquam. Voluptatibus nulla dolores sint aut
-                        veniam
-                        est
-                        officia accusamus modi explicabo.</p>
-                    <a href="#" class="card-link">View</a>
-                    <a href="#" class="card-link">Edit</a>
-                    <a href="#" class="card-link">Delete</a>
-                </div>
-            </div>
+
+            <app-home-post-card *ngFor="let post of recentPosts$ | async" [post]="post"></app-home-post-card>
         </div>
-        <h6>Visit <a routerLink="catalog">catalog</a> for more posts</h6>
+        <h6>Visit <a routerLink="/catalog">catalog</a> for more posts</h6>
     </div>
 
 </div>

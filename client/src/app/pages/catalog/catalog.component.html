@@ -1,0 +1,9 @@
+<div class="home-container">
+    <div class="recent-posts-container">
+        <h3 class="recent-posts">All Posts</h3>
+        <div class="cards-container">
+            <app-post-card *ngFor="let post of (posts$ | async)" [post]="post"></app-post-card>
+        </div>
+    </div>
+
+</div>

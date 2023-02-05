@@ -2,16 +2,19 @@ package com.hackaton.project.services;
 
 import com.hackaton.project.dtos.user.UserAuthDTO;
 import com.hackaton.project.entities.Post;
+import com.hackaton.project.exceptions.common.EntityNotFoundException;
 import com.hackaton.project.exceptions.common.InsufficientPermissionsException;
 import com.hackaton.project.exceptions.user.UserIsAuthenticatedException;
 import com.hackaton.project.repositories.PostRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import java.util.Objects;
+import java.awt.print.Pageable;
+import java.util.*;
 
 import static com.hackaton.project.enums.Role.BUSINESS;
 
@@ -22,6 +25,16 @@ public class PostService {
 
     public Post[] getAll() {
         return postRepository.getAll();
+    }
+
+    public Post getById(Long id) {
+        Optional<Post> optionalPost = postRepository.findById(id);
+
+        if (optionalPost.isEmpty()) {
+            throw new EntityNotFoundException(Post.class.getSimpleName());
+        }
+
+        return optionalPost.get();
     }
 
     public Post createPost(HttpServletRequest request,Post post) {
@@ -35,6 +48,14 @@ public class PostService {
         }
         post.setBusinessId(optionalUser.getId());
         return postRepository.save(post);
+    }
+
+    public Post[] getPostsByLimit() {
+        return postRepository.getRecentPosts();
+    }
+
+    public Post[] getRecentPostsById(Long businessId) {
+        return postRepository.getRecentPostsById(businessId);
     }
 
 }

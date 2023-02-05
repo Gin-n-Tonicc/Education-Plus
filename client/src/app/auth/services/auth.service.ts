@@ -143,6 +143,7 @@ export class AuthService {
         const { description, placeOfResidence, ...otherData } =
             response.business as IBusiness;
 
+        otherData.accessToken = response.token;
         return otherData;
     }
 }

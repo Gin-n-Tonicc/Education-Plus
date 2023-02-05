@@ -41,6 +41,9 @@
     </li>
 </ng-template>
 <ng-template #loggedLinks>
+    <li class="nav-item" *ngIf="isBusiness">
+        <a class="nav-link" routerLink="create">Create</a>
+    </li>
     <li class="nav-item">
         <a class="nav-link" routerLink="profile">Profile</a>
     </li>

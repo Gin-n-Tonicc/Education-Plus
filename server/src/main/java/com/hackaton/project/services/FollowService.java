@@ -5,6 +5,7 @@ import com.hackaton.project.dtos.user.UserAuthDTO;
 import com.hackaton.project.entities.Business;
 import com.hackaton.project.entities.Follow;
 import com.hackaton.project.entities.Student;
+import com.hackaton.project.enums.Role;
 import com.hackaton.project.exceptions.business.BusinessDoesNotExistsException;
 import com.hackaton.project.exceptions.common.InsufficientPermissionsException;
 import com.hackaton.project.exceptions.follow.AlreadyFollowingException;
@@ -33,6 +34,7 @@ public class FollowService {
 
     public Follow[] getByUserId(Long id) {
         Optional<Student> optionalStudent = studentService.getById(id);
+
         if (optionalStudent.isEmpty()) {
             throw new StudentDoesNotExistsException();
         }
@@ -46,6 +48,10 @@ public class FollowService {
         }
 
         if (!userAuthDTO.getId().equals(followCreateDTO.getStudentId())) {
+            throw new InsufficientPermissionsException();
+        }
+
+        if (userAuthDTO.getRole().equals(Role.BUSINESS)) {
             throw new InsufficientPermissionsException();
         }
 
@@ -78,8 +84,11 @@ public class FollowService {
             throw new UserIsAuthenticatedException();
         }
 
-        System.out.println(userAuthDTO.getId() + " " + followCreateDTO.getStudentId());
         if (!userAuthDTO.getId().equals(followCreateDTO.getStudentId())) {
+            throw new InsufficientPermissionsException();
+        }
+
+        if (userAuthDTO.getRole().equals(Role.BUSINESS)) {
             throw new InsufficientPermissionsException();
         }
 

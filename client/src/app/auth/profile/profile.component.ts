@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { IBusiness, IStudent } from 'src/app/shared/interfaces';
+import { Router } from '@angular/router';
+import { Pages } from 'src/app/shared/enums';
+import { IStudent } from 'src/app/shared/interfaces';
 import { IFollow } from 'src/app/shared/interfaces/follow.interface';
-import { BusinessService } from 'src/app/shared/services/business.service';
 import { FollowService } from 'src/app/shared/services/follow.service';
 import { StudentService } from 'src/app/shared/services/student.service';
 import { AuthService } from '../services/auth.service';
@@ -15,16 +16,21 @@ export class ProfileComponent implements OnInit {
     editing = false;
     studentData: IStudent | undefined;
     followedBusinesses: IFollow[] | undefined;
-    businessData: IBusiness | undefined;
     isStudent: boolean | undefined;
 
     constructor(
         private authService: AuthService,
         private followService: FollowService,
         studentService: StudentService,
-        businessService: BusinessService
+        router: Router
     ) {
         this.isStudent = authService.user?.role === 'STUDENT';
+        if (!this.isStudent) {
+            router.navigate([
+                Pages.ProfileVisit.replace(':id', '' + authService.user?.id),
+            ]);
+            return;
+        }
 
         if (this.isStudent) {
             studentService
@@ -32,10 +38,6 @@ export class ProfileComponent implements OnInit {
                 .subscribe((v) => (this.studentData = v));
 
             this.setFollows();
-        } else {
-            businessService
-                .getById(authService.user?.id as number)
-                .subscribe((v) => (this.businessData = v));
         }
     }
 

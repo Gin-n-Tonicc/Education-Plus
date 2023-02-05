@@ -7,4 +7,7 @@ export enum Pages {
     Register = 'register',
     Logout = 'logout',
     Search = 'search',
+    Create = 'create',
+    Catalog = 'catalog',
+    Details = 'details/:id',
 }
