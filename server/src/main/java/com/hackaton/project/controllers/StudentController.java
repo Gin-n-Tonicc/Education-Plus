@@ -67,4 +67,9 @@ public class StudentController {
         System.out.println(request.getAttribute("user") + " " + request.getAttribute("isAuthenticated"));
         return new StudentResponseDTO(token, userAuthDTO);
     }
+    @PutMapping("/update/{id}")
+    public StudentProfileDTO updateStudent(@PathVariable("id") Long studentId, @RequestBody @Valid Student student, HttpServletRequest request) {
+        Student updateStudent = studentService.updateStudent(studentId, student, request);
+        return new StudentProfileDTO(updateStudent);
+    }
 }

@@ -7,6 +7,7 @@ import com.hackaton.project.entities.Business;
 import com.hackaton.project.exceptions.common.EntityNotFoundException;
 import com.hackaton.project.services.BusinessService;
 import com.hackaton.project.utils.JwtUtilImpl;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -72,5 +73,9 @@ public class BusinessController {
         String token = jwtUtil.encode(businessDTO);
 
         return new BusinessResponseDTO(token, businessDTO);
+    }
+    @PutMapping("/update/{id}")
+    public BusinessDTO updateStudent(@PathVariable("id") Long businessId, @RequestBody @Valid Business business, HttpServletRequest request) {
+        return BusinessDTO.mapToDTO(businessService.updateBusiness(businessId, business, request));
     }
 }
