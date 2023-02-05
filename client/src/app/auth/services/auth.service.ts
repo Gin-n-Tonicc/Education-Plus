@@ -140,10 +140,9 @@ export class AuthService {
     private parseAuthResponseBusinessToUser(
         response: IUserAuthResponse
     ): IUser {
-        const { name, description, placeOfResidence, ...otherData } =
+        const { description, placeOfResidence, ...otherData } =
             response.business as IBusiness;
 
-        const userData: IUser = Object.assign({ fullName: name }, otherData);
-        return userData;
+        return otherData;
     }
 }

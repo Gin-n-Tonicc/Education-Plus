@@ -3,7 +3,7 @@
         <div class="col-12">
             <div class="fit-auto my-5">
                 <h2 style="color:#6495ED">
-                    <p>My Profile</p>
+                    <p>My {{isStudent ? 'Student' : 'Business'}} Profile</p>
                 </h2>
                 <hr>
             </div>
@@ -11,43 +11,12 @@
                 <div class="fit-auto col-xxl-8 mb-5 mb-xxl-0">
                     <div class="bg-secondary-soft px-4 py-5 rounded">
                         <div class="row g-3">
-                            <div class="col-md-6">
-                                <label style="color:#6495ED">Full Name</label>
-                                <input type="text" [readOnly]="!editing" class="form-control" placeholder=""
-                                    aria-label="Full name" value="Belis">
-                            </div>
-                            <div class="col-md-6">
-                                <label style="color:#6495ED">Email</label>
-                                <input type="email" class="form-control" placeholder="" aria-label="Email"
-                                    value="beliss@gvwwf">
-                            </div>
-                            <div class="col-md-6">
-                                <label style="color:#6495ED">Password</label>
-                                <input type="password" class="form-control" placeholder="" aria-label="Password"
-                                    value="123456">
-                            </div>
-                            <div class="col-md-6">
-                                <label style="color:#6495ED">School</label>
-                                <input type="text" class="form-control" placeholder="" aria-label="School"
-                                    value="Pirva gmnz">
-                            </div>
-                            <div class="col-md-6">
-                                <label style="color:#6495ED">Town</label>
-                                <input type="text" class="form-control" id="inputEmail4" value="Trg">
-                            </div>
-                            <div class="col-md-6">
-                                <label style="color:#6495ED">Interests</label>
-                                <input type="text" class="form-control" placeholder="" aria-label="Interests"
-                                    value="DDZ">
-                            </div>
-                            <div class="col-md-6">
-                                <label style="color:#6495ED">Age</label>
-                                <input type="n" class="form-control" placeholder="" aria-label="age" value="67">
-                            </div>
-                            <div class="buttons col-md-6">
+                            <ng-template *ngIf="isStudent then studentFields; else businessFields;"></ng-template>
+
+                            <!-- <div class="buttons col-md-6">
                                 <button>Undo</button>
                                 <button>Save</button>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -55,3 +24,52 @@
         </div>
     </div>
 </div>
+
+<ng-template #studentFields>
+    <div class="col-md-6">
+        <label style="color:#6495ED">Full Name</label>
+        <input type="text" readonly class="form-control" placeholder="" aria-label="Full name"
+            [value]="studentData?.name">
+    </div>
+    <div class="col-md-6">
+        <label style="color:#6495ED">Email</label>
+        <input type="email" readonly class="form-control" placeholder="" aria-label="Email"
+            [value]="studentData?.email">
+    </div>
+    <div class="col-md-6">
+        <label style="color:#6495ED">School</label>
+        <input type="text" readonly class="form-control" placeholder="" aria-label="School"
+            [value]="studentData?.school">
+    </div>
+    <div class="col-md-6">
+        <label style="color:#6495ED">Town</label>
+        <input type="text" readonly class="form-control" id="inputEmail4" [value]="studentData?.town">
+    </div>
+    <div class="col-md-6">
+        <label style="color:#6495ED">Age</label>
+        <input type="n" readonly class="form-control" placeholder="" aria-label="age" [value]="studentData?.age">
+    </div>
+</ng-template>
+
+<ng-template #businessFields>
+    <div class="col-md-6">
+        <label style="color:#6495ED">Name</label>
+        <input type="text" readonly class="form-control" placeholder="" aria-label="Full name"
+            [value]="businessData?.name">
+    </div>
+    <div class="col-md-6">
+        <label style="color:#6495ED">Email</label>
+        <input type="email" readonly class="form-control" placeholder="" aria-label="Email"
+            [value]="businessData?.email">
+    </div>
+    <div class="col-md-6">
+        <label style="color:#6495ED">Description</label>
+        <input type="text" readonly class="form-control" placeholder="" aria-label="Description"
+            [value]="businessData?.description">
+    </div>
+    <div class="col-md-6">
+        <label style="color:#6495ED">Place of Residence</label>
+        <input type="text" readonly class="form-control" placeholder="" aria-label="PlaceOfResidence"
+            [value]="businessData?.placeOfResidence">
+    </div>
+</ng-template>

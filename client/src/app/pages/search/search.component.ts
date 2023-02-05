@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { IBusiness } from 'src/app/shared/interfaces';
-import { BusinessService } from '../services/business.service';
+import { BusinessService } from 'src/app/shared/services/business.service';
 
 @Component({
     selector: 'app-search',

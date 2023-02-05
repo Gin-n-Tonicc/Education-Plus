@@ -8,6 +8,10 @@ import { IBusiness } from 'src/app/shared/interfaces';
 export class BusinessService {
     constructor(private httpClient: HttpClient) {}
 
+    getById(id: number) {
+        return this.httpClient.get<IBusiness>(`api/businesses/${id}`);
+    }
+
     getBySearch(search: string) {
         return this.httpClient.get<IBusiness[]>(
             `api/businesses/search/${search}`

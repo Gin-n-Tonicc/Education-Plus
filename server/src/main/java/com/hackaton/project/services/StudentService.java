@@ -23,7 +23,7 @@ public class StudentService {
     }
     public Student submitStudent(@Valid @RequestBody Student student) {
         Optional<Student> optionalStudent = studentRepository.findOneByEmail(student.getEmail());
-        student.setRole(Role.USER);
+        student.setRole(Role.STUDENT);
 
         if (optionalStudent.isPresent()) {
             throw new StudentExistsException("email");
