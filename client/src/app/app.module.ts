@@ -10,6 +10,7 @@ import { AuthModule } from './auth/auth.module';
 import { CoreModule } from './core/core.module';
 import { ErrorInterceptorProvider } from './core/interceptors/error.interceptor';
 import { RequestInterceptorProvider } from './core/interceptors/request.interceptor';
+import { PagesModule } from './pages/pages.module';
 import { API_ERROR_KEY } from './shared/constants';
 import { SharedModule } from './shared/shared.module';
 
@@ -23,6 +24,7 @@ import { SharedModule } from './shared/shared.module';
         CoreModule,
         SharedModule,
         AuthModule,
+        PagesModule,
     ],
     providers: [
         {

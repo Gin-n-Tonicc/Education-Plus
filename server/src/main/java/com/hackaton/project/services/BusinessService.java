@@ -21,6 +21,11 @@ public class BusinessService {
     public Optional<Business> getById(Long id) {
         return businessRepository.findById(id);
     }
+
+    public Business[] getBySearch(String search) {
+        return businessRepository.findBySearch(search);
+    }
+
     public Business submitBusiness(@Valid @RequestBody Business business) {
         Optional<Business> optionalBusiness = businessRepository.findOneByEmail(business.getEmail());
         business.setRole(Role.BUSINESS);

@@ -1,0 +1,13 @@
+<div class="home-container">
+    <h1 class="title">Education+</h1>
+
+    <div class="recent-posts-container">
+        <h3 class="recent-posts">Search businesses</h3>
+        <h5 class="recent-posts" *ngIf="(businesses$ | async)?.length === 0">No businesses found with that search</h5>
+        <div class="cards-container">
+            <app-business-card *ngFor="let business of businesses$ | async" [business]="business"></app-business-card>
+
+        </div>
+    </div>
+
+</div>
