@@ -10,13 +10,16 @@
                     <hr>
                 </div>
                 <div class="row mb-5 gx-5">
-                    <div class="fit-auto col-xxl-8 mb-5 mb-xxl-0">
-                        <div class="bg-secondary-soft px-4 py-5 rounded">
+                    <div class="fit-auto custom col-xxl-8 mb-5 mb-xxl-0">
+                        <button *ngIf="isAuthenticated" class="follow-btn" [disabled]="submitted"
+                            (click)="handleFollow()">Follow</button>
+                        <div class="custom-relative bg-secondary-soft px-4 py-5 rounded">
+
                             <div class="row g-3">
                                 <div class="col-md-6">
                                     <label style="color:#6495ED">Name</label>
                                     <input type="text" readonly class="form-control" placeholder=""
-                                        aria-label="Full name" [value]="businessData?.name">
+                                        aria-label="Full name" [value]="businessData.name">
                                 </div>
                                 <div class="col-md-6">
                                     <label style="color:#6495ED">Email</label>
@@ -32,6 +35,11 @@
                                     <label style="color:#6495ED">Place of Residence</label>
                                     <input type="text" readonly class="form-control" placeholder=""
                                         aria-label="PlaceOfResidence" [value]="businessData.placeOfResidence">
+                                </div>
+                                <div class="col-md-6">
+                                    <label style="color:#6495ED">Verified</label>
+                                    <input type="text" readonly class="form-control" placeholder=""
+                                        aria-label="Full name" [value]="businessData.verified">
                                 </div>
                             </div>
                         </div>

@@ -78,6 +78,7 @@ public class FollowService {
             throw new UserIsAuthenticatedException();
         }
 
+        System.out.println(userAuthDTO.getId() + " " + followCreateDTO.getStudentId());
         if (!userAuthDTO.getId().equals(followCreateDTO.getStudentId())) {
             throw new InsufficientPermissionsException();
         }

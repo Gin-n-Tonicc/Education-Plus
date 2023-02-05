@@ -1,0 +1,7 @@
+.buttonRemove {
+    border: unset;
+}
+
+.card-body {
+    cursor: pointer;
+}

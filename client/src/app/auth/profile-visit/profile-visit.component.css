@@ -72,3 +72,16 @@ body {
 .recent-posts .card {
     cursor: pointer;
 }
+
+.follow-btn {
+    position: absolute;
+    border: 1px solid #6495ed;
+    color: #6495ed;
+    left: 0;
+    right: 0;
+}
+
+.custom {
+    padding: 0;
+    position: relative;
+}

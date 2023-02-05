@@ -7,6 +7,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { ProfileVisitComponent } from './profile-visit/profile-visit.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
+import { FollowingCardComponent } from './components/following-card/following-card.component';
 
 @NgModule({
     declarations: [
@@ -15,6 +16,7 @@ import { RegisterComponent } from './register/register.component';
         LogoutComponent,
         ProfileComponent,
         ProfileVisitComponent,
+        FollowingCardComponent,
     ],
     imports: [CommonModule, ReactiveFormsModule, RouterModule],
     exports: [],

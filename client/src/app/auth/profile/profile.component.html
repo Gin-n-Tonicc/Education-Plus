@@ -23,48 +23,9 @@
         <div>
             <h4 style="color:#6495ED; text-align: center;" class="recent-posts-title">Followed Businesses</h4>
             <div class="recent-posts">
-                <div class="card">
-                    <button class="buttonRemove">Remove</button>
-                    <div class="card-body">
-                        <h5 class="card-title">Digital Targovishte</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Targovishte</h6>
-                        <p class="card-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit
-                            corrupti
-                            earum
-                            magni repellat ratione in dolores voluptas eos numquam. Voluptatibus nulla dolores sint aut
-                            veniam
-                            est
-                            officia accusamus modi explicabo.</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <button class="buttonRemove">Remove</button>
-                    <div class="card-body">
-                        <h5 class="card-title">Digital Targovishte</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Targovishte</h6>
-                        <p class="card-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit
-                            corrupti
-                            earum
-                            magni repellat ratione in dolores voluptas eos numquam. Voluptatibus nulla dolores sint aut
-                            veniam
-                            est
-                            officia accusamus modi explicabo.</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <button class="buttonRemove">Remove</button>
-                    <div class="card-body">
-                        <h5 class="card-title">Digital Targovishte</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Targovishte</h6>
-                        <p class="card-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit
-                            corrupti
-                            earum
-                            magni repellat ratione in dolores voluptas eos numquam. Voluptatibus nulla dolores sint aut
-                            veniam
-                            est
-                            officia accusamus modi explicabo.</p>
-                    </div>
-                </div>
+                <app-following-card *ngFor="let followedBusiness of followedBusinesses"
+                    [business]="followedBusiness.gotFollowedBusiness"
+                    (deleteEvent)="handleDelete()"></app-following-card>
             </div>
         </div>
     </ng-container>

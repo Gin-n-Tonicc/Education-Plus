@@ -4,4 +4,5 @@ export interface IBusiness extends Omit<IUser, 'fullName'> {
     name: string;
     description: string;
     placeOfResidence: string;
+    verified: boolean;
 }

@@ -1,0 +1,8 @@
+<div class="card">
+    <button class="buttonRemove" (click)="onRemove()">Remove</button>
+    <div class="card-body" [routerLink]="'/profile/' + business.id">
+        <h5 class="card-title">{{business.name}}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">{{business.placeOfResidence}}</h6>
+        <p class="card-text">{{business.description}}</p>
+    </div>
+</div>
