@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <div class="fit-auto my-5">
+            <div class="fit-auto my-3">
                 <h2 style="color:#6495ED">
                     <p>My {{isStudent ? 'Student' : 'Business'}} Profile</p>
                 </h2>
@@ -12,11 +12,6 @@
                     <div class="bg-secondary-soft px-4 py-5 rounded">
                         <div class="row g-3">
                             <ng-template *ngIf="isStudent then studentFields; else businessFields;"></ng-template>
-
-                            <!-- <div class="buttons col-md-6">
-                                <button>Undo</button>
-                                <button>Save</button>
-                            </div> -->
                         </div>
                     </div>
                 </div>

@@ -1,0 +1,89 @@
+<ng-container *ngIf="businessData">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="fit-auto my-3">
+                    <h2 style="color:#6495ED">
+                        <p style="text-align: center;">Business</p>
+                        <p>{{businessData.name}}'s Profile</p>
+                    </h2>
+                    <hr>
+                </div>
+                <div class="row mb-5 gx-5">
+                    <div class="fit-auto col-xxl-8 mb-5 mb-xxl-0">
+                        <div class="bg-secondary-soft px-4 py-5 rounded">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label style="color:#6495ED">Name</label>
+                                    <input type="text" readonly class="form-control" placeholder=""
+                                        aria-label="Full name" [value]="businessData?.name">
+                                </div>
+                                <div class="col-md-6">
+                                    <label style="color:#6495ED">Email</label>
+                                    <input type="email" readonly class="form-control" placeholder="" aria-label="Email"
+                                        [value]="businessData.email">
+                                </div>
+                                <div class="col-md-6">
+                                    <label style="color:#6495ED">Description</label>
+                                    <input type="text" readonly class="form-control" placeholder=""
+                                        aria-label="Description" [value]="businessData.description">
+                                </div>
+                                <div class="col-md-6">
+                                    <label style="color:#6495ED">Place of Residence</label>
+                                    <input type="text" readonly class="form-control" placeholder=""
+                                        aria-label="PlaceOfResidence" [value]="businessData.placeOfResidence">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <h4 style="color:#6495ED; text-align: center;" class="recent-posts-title">Recent posts</h4>
+            <div class="recent-posts">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Digital Targovishte</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Targovishte</h6>
+                        <p class="card-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit
+                            corrupti
+                            earum
+                            magni repellat ratione in dolores voluptas eos numquam. Voluptatibus nulla dolores sint aut
+                            veniam
+                            est
+                            officia accusamus modi explicabo.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Digital Targovishte</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Targovishte</h6>
+                        <p class="card-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit
+                            corrupti
+                            earum
+                            magni repellat ratione in dolores voluptas eos numquam. Voluptatibus nulla dolores sint aut
+                            veniam
+                            est
+                            officia accusamus modi explicabo.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Digital Targovishte</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Targovishte</h6>
+                        <p class="card-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit
+                            corrupti
+                            earum
+                            magni repellat ratione in dolores voluptas eos numquam. Voluptatibus nulla dolores sint aut
+                            veniam
+                            est
+                            officia accusamus modi explicabo.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</ng-container>

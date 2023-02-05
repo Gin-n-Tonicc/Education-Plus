@@ -25,11 +25,7 @@ export class ProfileComponent implements OnInit {
         if (this.isStudent) {
             studentService
                 .getById(authService.user?.id as number)
-                .subscribe((v) => {
-                    console.log(v);
-
-                    this.studentData = v;
-                });
+                .subscribe((v) => (this.studentData = v));
         } else {
             businessService
                 .getById(authService.user?.id as number)
