@@ -1,12 +1,16 @@
 package com.hackaton.project.exceptions;
 
 import com.hackaton.project.dtos.common.ErrorDTO;
+import com.hackaton.project.exceptions.business.BusinessDoesNotExistsException;
 import com.hackaton.project.exceptions.business.BusinessExistsException;
 import com.hackaton.project.exceptions.business.InvalidBusinessDataException;
 import com.hackaton.project.exceptions.common.EntityNotFoundException;
+import com.hackaton.project.exceptions.common.InsufficientPermissionsException;
 import com.hackaton.project.exceptions.jwts.JWTInvalidException;
 import com.hackaton.project.exceptions.student.InvalidStudentDataException;
+import com.hackaton.project.exceptions.student.StudentDoesNotExistsException;
 import com.hackaton.project.exceptions.student.StudentExistsException;
+import com.hackaton.project.exceptions.user.UserIsAuthenticatedException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ProblemDetail;
@@ -128,6 +132,58 @@ public class GlobalExceptionHandler {
                     .withErrorCode("ISE0")
                     .build(),
             HttpStatus.INTERNAL_SERVER_ERROR
+        );
+    }
+    @ExceptionHandler(InsufficientPermissionsException.class)
+    public ResponseEntity<ErrorDTO> InsufficientPermissionsException(InsufficientPermissionsException exception) {
+        return new ResponseEntity<>(
+                ErrorDTO.builder()
+                        .withTitle("Insufficient Permissions")
+                        .withDetails(exception.getMessage())
+                        .withStatus(HttpStatus.FORBIDDEN.value())
+                        .withErrorType(InsufficientPermissionsException.class.getSimpleName())
+                        .withErrorCode("IPE0")
+                        .build(),
+                HttpStatus.FORBIDDEN
+        );
+    }
+    @ExceptionHandler(UserIsAuthenticatedException.class)
+    public ResponseEntity<ErrorDTO> UserIsAuthenticatedException(UserIsAuthenticatedException exception) {
+        return new ResponseEntity<>(
+                ErrorDTO.builder()
+                        .withTitle("User Is Not Authenticated")
+                        .withDetails(exception.getMessage())
+                        .withStatus(HttpStatus.UNAUTHORIZED.value())
+                        .withErrorType(UserIsAuthenticatedException.class.getSimpleName())
+                        .withErrorCode("UINA")
+                        .build(),
+                HttpStatus.UNAUTHORIZED
+        );
+    }
+    @ExceptionHandler(StudentDoesNotExistsException.class)
+    public ResponseEntity<ErrorDTO> StudentDoesNotExistsException(StudentDoesNotExistsException exception) {
+        return new ResponseEntity<>(
+                ErrorDTO.builder()
+                        .withTitle("User doesn't exist")
+                        .withDetails(exception.getMessage())
+                        .withStatus(HttpStatus.NOT_FOUND.value())
+                        .withErrorType(UserIsAuthenticatedException.class.getSimpleName())
+                        .withErrorCode("SDNE")
+                        .build(),
+                HttpStatus.NOT_FOUND
+        );
+    }
+    @ExceptionHandler(BusinessDoesNotExistsException.class)
+    public ResponseEntity<ErrorDTO> BusinessDoesNotExistsException(BusinessDoesNotExistsException exception) {
+        return new ResponseEntity<>(
+                ErrorDTO.builder()
+                        .withTitle("User doesn't exist")
+                        .withDetails(exception.getMessage())
+                        .withStatus(HttpStatus.NOT_FOUND.value())
+                        .withErrorType(UserIsAuthenticatedException.class.getSimpleName())
+                        .withErrorCode("BDNE")
+                        .build(),
+                HttpStatus.NOT_FOUND
         );
     }
 }
