@@ -18,6 +18,13 @@
                 </ul>
 
                 <ul class="navbar-nav mb-2 mb-lg-0">
+                    <div class="container-fluid">
+                        <form class="d-flex" role="search" [formGroup]="form" (ngSubmit)="handleSearch()">
+                            <input class="form-control me-2" type="search" placeholder="Search business"
+                                aria-label="Search" formControlName="search">
+                            <button class="btn btn-outline-success" type="submit">Search</button>
+                        </form>
+                    </div>
                     <ng-template *ngIf="isAuthenticated then loggedLinks; else notLoggedLinks;"></ng-template>
                 </ul>
             </div>
@@ -35,7 +42,7 @@
 </ng-template>
 <ng-template #loggedLinks>
     <li class="nav-item">
-        <a class="nav-link" routerLink="logout">Profile</a>
+        <a class="nav-link" routerLink="profile">Profile</a>
     </li>
     <li class="nav-item">
         <a class="nav-link" routerLink="logout">Logout</a>

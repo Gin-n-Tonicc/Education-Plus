@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/services/auth.service';
-import { Pages } from 'src/app/shared/enums';
 
 @Component({
     selector: 'app-authenticate',
@@ -20,6 +19,5 @@ export class AuthenticateComponent {
 
     private onEnd() {
         this.authenticating = false;
-        this.router.navigate([Pages.Home]);
     }
 }

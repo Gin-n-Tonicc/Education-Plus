@@ -27,7 +27,10 @@ public class BusinessService {
     public Optional<Business> getById(Long id) {
         return businessRepository.findById(id);
     }
-    public Business submitBusiness(Business business) {
+
+
+    public Business submitBusiness(@Valid @RequestBody Business business) {
+
         Optional<Business> optionalBusiness = businessRepository.findOneByEmail(business.getEmail());
         business.setRole(Role.BUSINESS);
         business.setVerified(false);

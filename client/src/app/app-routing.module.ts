@@ -31,6 +31,13 @@ const routes: Routes = [
             ),
     },
     {
+        path: '',
+        loadChildren: () =>
+            import('./pages/pages-routing.module').then(
+                (m) => m.PagesRoutingModule
+            ),
+    },
+    {
         path: '**',
         redirectTo: Pages.NotFound,
     },
