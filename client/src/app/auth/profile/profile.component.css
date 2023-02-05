@@ -50,3 +50,29 @@ body {
     border: 1px solid #6495ed;
     color: white;
 }
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.recent-posts-title {
+    margin-bottom: 1rem;
+}
+
+.recent-posts {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding-bottom: 3rem;
+}
+
+.recent-posts .card {
+    cursor: pointer;
+}
+
+.buttonRemove {
+    border: unset;
+}
