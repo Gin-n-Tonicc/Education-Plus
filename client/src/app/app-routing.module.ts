@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './core/home/home.component';
+import { NotFoundComponent } from './core/not-found/not-found.component';
 import { Pages } from './shared/enums';
 
 const routes: Routes = [
@@ -16,13 +17,13 @@ const routes: Routes = [
             title: 'Home',
         },
     },
-    //   {
-    //     path: Pages.NotFound,
-    //     component: NotFoundComponent,
-    //     data: {
-    //       title: 'Not Found',
-    //     },
-    //   },
+    {
+        path: Pages.NotFound,
+        component: NotFoundComponent,
+        data: {
+            title: 'Not Found',
+        },
+    },
     {
         path: '',
         loadChildren: () =>
