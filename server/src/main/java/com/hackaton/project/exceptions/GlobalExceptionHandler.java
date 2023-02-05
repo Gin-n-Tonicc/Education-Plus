@@ -6,6 +6,7 @@ import com.hackaton.project.exceptions.business.BusinessExistsException;
 import com.hackaton.project.exceptions.business.InvalidBusinessDataException;
 import com.hackaton.project.exceptions.common.EntityNotFoundException;
 import com.hackaton.project.exceptions.common.InsufficientPermissionsException;
+import com.hackaton.project.exceptions.follow.AlreadyFollowingException;
 import com.hackaton.project.exceptions.jwts.JWTInvalidException;
 import com.hackaton.project.exceptions.student.InvalidStudentDataException;
 import com.hackaton.project.exceptions.student.StudentDoesNotExistsException;
@@ -21,6 +22,20 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
+
+    @ExceptionHandler(AlreadyFollowingException.class)
+    public ResponseEntity<ErrorDTO> handleNotFoundException(AlreadyFollowingException exception) {
+        return new ResponseEntity<>(
+                ErrorDTO.builder()
+                        .withTitle("Already is followed")
+                        .withDetails(exception.getMessage())
+                        .withStatus(HttpStatus.BAD_REQUEST.value())
+                        .withErrorType(AlreadyFollowingException.class.getSimpleName())
+                        .withErrorCode("NFE0")
+                        .build(),
+                HttpStatus.BAD_REQUEST
+        );
+    }
 
     @ExceptionHandler(EntityNotFoundException.class)
     public ResponseEntity<ErrorDTO> handleNotFoundException(EntityNotFoundException exception) {
@@ -164,26 +179,26 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorDTO> StudentDoesNotExistsException(StudentDoesNotExistsException exception) {
         return new ResponseEntity<>(
                 ErrorDTO.builder()
-                        .withTitle("User doesn't exist")
+                        .withTitle("Student doesn't exist")
                         .withDetails(exception.getMessage())
-                        .withStatus(HttpStatus.NOT_FOUND.value())
-                        .withErrorType(UserIsAuthenticatedException.class.getSimpleName())
+                        .withStatus(HttpStatus.BAD_REQUEST.value())
+                        .withErrorType(StudentExistsException.class.getSimpleName())
                         .withErrorCode("SDNE")
                         .build(),
-                HttpStatus.NOT_FOUND
+                HttpStatus.BAD_REQUEST
         );
     }
     @ExceptionHandler(BusinessDoesNotExistsException.class)
     public ResponseEntity<ErrorDTO> BusinessDoesNotExistsException(BusinessDoesNotExistsException exception) {
         return new ResponseEntity<>(
                 ErrorDTO.builder()
-                        .withTitle("User doesn't exist")
+                        .withTitle("Business doesn't exist")
                         .withDetails(exception.getMessage())
-                        .withStatus(HttpStatus.NOT_FOUND.value())
-                        .withErrorType(UserIsAuthenticatedException.class.getSimpleName())
+                        .withStatus(HttpStatus.BAD_REQUEST.value())
+                        .withErrorType(BusinessDoesNotExistsException.class.getSimpleName())
                         .withErrorCode("BDNE")
                         .build(),
-                HttpStatus.NOT_FOUND
+                HttpStatus.BAD_REQUEST
         );
     }
 }

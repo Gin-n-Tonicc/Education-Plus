@@ -27,7 +27,6 @@ public class BusinessController {
     JwtUtilImpl jwtUtil;
     @GetMapping
     public List<BusinessDTO> getAll() {
-        System.out.println(businessService.getBySearch("Maik").length);
         return Arrays.stream(businessService.getAll()).map(BusinessDTO::mapToDTO).toList();
     }
 

@@ -16,6 +16,9 @@ public class Follow {
     @JoinColumn(name = "followed_student_id")
     private Student followedStudent;
 
+    public Follow() {
+    }
+
     public Student getFollowedStudent() {
         return followedStudent;
     }

@@ -28,6 +28,10 @@ public class BusinessService {
         return businessRepository.findById(id);
     }
 
+    public Business[] getBySearch(String search) {
+        return businessRepository.findBySearch(search);
+    }
+
 
     public Business submitBusiness(@Valid @RequestBody Business business) {
 
