@@ -2,7 +2,7 @@ package com.hackaton.project.services;
 
 import com.hackaton.project.dtos.user.UserAuthDTO;
 import com.hackaton.project.entities.Post;
-import com.hackaton.project.exceptions.user.InvalidUserPostException;
+import com.hackaton.project.exceptions.common.InsufficientPermissionsException;
 import com.hackaton.project.exceptions.user.UserIsAuthenticatedException;
 import com.hackaton.project.repositories.PostRepository;
 import jakarta.servlet.http.HttpServletRequest;
@@ -24,14 +24,14 @@ public class PostService {
         return postRepository.getAll();
     }
 
-    public Post createPost(HttpServletRequest request, @Valid @RequestBody Post post) {
-        UserAuthDTO optionalUser = (UserAuthDTO) request.getAttribute("userAuthDTO");
+    public Post createPost(HttpServletRequest request,Post post) {
+        UserAuthDTO optionalUser = (UserAuthDTO) request.getAttribute("user");
         boolean isAuthenticated = Objects.nonNull(request.getAttribute("isAuthenticated"));
         if(!isAuthenticated){
             throw new UserIsAuthenticatedException();
         }
         if (!optionalUser.getRole().equals(BUSINESS)) {
-            throw new InvalidUserPostException();
+            throw new InsufficientPermissionsException();
         }
         post.setBusinessId(optionalUser.getId());
         return postRepository.save(post);
