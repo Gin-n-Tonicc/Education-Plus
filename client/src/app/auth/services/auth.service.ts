@@ -11,7 +11,11 @@ import { IBusinessRegister } from 'src/app/shared/interfaces/business-register.i
 import { IUserAuthResponse } from 'src/app/shared/interfaces/user-auth-response.interface';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 import { USER_STORAGE_KEY } from '../../shared/constants';
-import { IStudentRegisterData, IUser } from '../../shared/interfaces';
+import {
+    IBusiness,
+    IStudentRegisterData,
+    IUser,
+} from '../../shared/interfaces';
 
 @Injectable({
     providedIn: 'root',
@@ -65,11 +69,7 @@ export class AuthService {
             })
             .pipe(
                 tap((user) => {
-                    const newUser: IUser = Object.assign(
-                        { accessToken: user.token },
-                        user.business
-                    );
-
+                    const newUser = this.parseAuthResponseBusinessToUser(user);
                     this.users$$.next(newUser);
                 })
             );
@@ -95,11 +95,7 @@ export class AuthService {
             .post<IUserAuthResponse>('api/businesses/register', businessData)
             .pipe(
                 tap((user) => {
-                    const newUser: IUser = Object.assign(
-                        { accessToken: user.token },
-                        user.business
-                    );
-
+                    const newUser = this.parseAuthResponseBusinessToUser(user);
                     this.users$$.next(newUser);
                 })
             );
@@ -139,5 +135,14 @@ export class AuthService {
 
     private clearUser() {
         this.users$$.next(null);
+    }
+
+    private parseAuthResponseBusinessToUser(
+        response: IUserAuthResponse
+    ): IUser {
+        const { description, placeOfResidence, ...otherData } =
+            response.business as IBusiness;
+
+        return otherData;
     }
 }

@@ -11,6 +11,9 @@ public interface BusinessRepository extends CrudRepository<Business, Long> {
     @Query(value = "SELECT b FROM Business b WHERE b.email = :email")
     Optional<Business> findOneByEmail(@Param("email") String email);
 
+    @Query(value = "SELECT b FROM Business b WHERE LOWER(b.name) LIKE %:search%")
+    Business[] findBySearch(@Param("search") String search);
+
     @Query(value = "SELECT * FROM Business", nativeQuery = true)
     Business[] getAll();
 }

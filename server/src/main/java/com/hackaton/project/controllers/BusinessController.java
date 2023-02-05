@@ -27,8 +27,19 @@ public class BusinessController {
     JwtUtilImpl jwtUtil;
     @GetMapping
     public List<BusinessDTO> getAll() {
+        System.out.println(businessService.getBySearch("Maik").length);
         return Arrays.stream(businessService.getAll()).map(BusinessDTO::mapToDTO).toList();
     }
+
+    @GetMapping("/search/")
+    public List<BusinessDTO> getByDefaultSearch() {
+        return Arrays.stream(businessService.getBySearch("")).map(BusinessDTO::mapToDTO).toList();
+    }
+    @GetMapping("/search/{search}")
+    public List<BusinessDTO> getBySearch(@PathVariable("search") String search) {
+        return Arrays.stream(businessService.getBySearch(search)).map(BusinessDTO::mapToDTO).toList();
+    }
+
 
     @GetMapping("/{id}")
     public BusinessDTO getById(@PathVariable("id") Long id) throws EntityNotFoundException {

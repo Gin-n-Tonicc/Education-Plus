@@ -27,6 +27,20 @@ public class BusinessService {
     public Optional<Business> getById(Long id) {
         return businessRepository.findById(id);
     }
+
+
+    public Business submitBusiness(@Valid @RequestBody Business business) {
+
+        Optional<Business> optionalBusiness = businessRepository.findOneByEmail(business.getEmail());
+        business.setRole(Role.BUSINESS);
+        business.setVerified(false);
+
+        if (optionalBusiness.isPresent()) {
+            throw new BusinessExistsException("email");
+        }
+
+        return businessRepository.save(business);
+    }
     public Business[] getAll() {
         return businessRepository.getAll();
     }
@@ -42,17 +56,6 @@ public class BusinessService {
             throw new InvalidBusinessDataException();
         }
         return business;
-    }
-    public Business submitBusiness(Business business) {
-        Optional<Business> optionalBusiness = businessRepository.findOneByEmail(business.getEmail());
-        business.setRole(Role.BUSINESS);
-        business.setVerified(false);
-
-        if (optionalBusiness.isPresent()) {
-            throw new BusinessExistsException("email");
-        }
-
-        return businessRepository.save(business);
     }
     public Business updateBusiness(Long businessId, Business business, HttpServletRequest request) {
         Optional<Business> optionalBusiness = businessRepository.findById(businessId);

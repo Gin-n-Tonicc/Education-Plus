@@ -4,6 +4,8 @@ import { Pages } from '../shared/enums';
 import { CanActivateAuth } from '../shared/guards/auth.activate';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
+import { ProfileVisitComponent } from './profile-visit/profile-visit.component';
+import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
@@ -23,6 +25,22 @@ const routes: Routes = [
         data: {
             title: 'Register',
             reqAuth: false,
+        },
+    },
+    {
+        path: Pages.Profile,
+        component: ProfileComponent,
+        canActivate: [CanActivateAuth],
+        data: {
+            title: 'Profile',
+            reqAuth: true,
+        },
+    },
+    {
+        path: Pages.ProfileVisit,
+        component: ProfileVisitComponent,
+        data: {
+            title: 'Profile',
         },
     },
     {

@@ -1,0 +1,10 @@
+.card {
+    text-align: center;
+    width: 18rem;
+    margin-bottom: 2rem;
+    cursor: pointer;
+}
+
+.card-text {
+    margin: 2rem 0;
+}
