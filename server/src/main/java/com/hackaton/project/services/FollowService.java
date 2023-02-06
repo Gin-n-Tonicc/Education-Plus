@@ -66,7 +66,7 @@ public class FollowService {
             throw new BusinessDoesNotExistsException();
         }
 
-        boolean isFollowing = followRepository.getByUserId(student.getId()).length >= 1;
+        boolean isFollowing = followRepository.getByUserIdAndBusinessId(student.getId(), followCreateDTO.getBusinessId()).length >= 1;
 
         if (isFollowing) {
             throw new AlreadyFollowingException();

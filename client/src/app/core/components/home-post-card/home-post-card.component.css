@@ -1,8 +1,16 @@
 .card {
     text-align: center;
     width: 18rem;
+    height: 100%;
+    cursor: pointer;
 }
 
 .card-text {
     margin: 2rem 0;
+}
+
+@media only screen and (max-width: 1000px) {
+    .card {
+        width: 70vw;
+    }
 }

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { tap } from 'rxjs';
 import { IPost } from 'src/app/shared/interfaces/post.interface';
 
 @Injectable({
@@ -17,7 +18,11 @@ export class PostService {
     }
 
     fetchRecentById(id: number) {
-        return this.httpClient.get<IPost[]>(`api/posts/recent/${id}`);
+        console.log(`api/posts/recent/${id}`);
+
+        return this.httpClient
+            .get<IPost[]>(`api/posts/recent/${id}`)
+            .pipe(tap((v) => console.log(v)));
     }
 
     fetchById(id: number) {

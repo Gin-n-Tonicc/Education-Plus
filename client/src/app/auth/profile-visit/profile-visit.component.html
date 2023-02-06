@@ -11,8 +11,9 @@
                 </div>
                 <div class="row mb-5 gx-5">
                     <div class="fit-auto custom col-xxl-8 mb-5 mb-xxl-0">
-                        <button *ngIf="isAuthenticated && isStudent" class="follow-btn" [disabled]="submitted"
-                            (click)="handleFollow()">Follow</button>
+                        <button *ngIf="isAuthenticated && isStudent" class="follow-btn"
+                            [disabled]="hasFollowedAlready || submitted" (click)="handleFollow()">{{hasFollowedAlready ?
+                            'Following' : 'Follow'}}</button>
                         <div class="custom-relative bg-secondary-soft px-4 py-5 rounded">
 
                             <div class="row g-3">
@@ -51,7 +52,7 @@
             <h4 style="color:#6495ED; text-align: center;" class="recent-posts-title">Recent posts</h4>
             <div class="recent-posts">
                 <app-post-card *ngFor="let post of recentPosts$ | async" [post]="post"></app-post-card>
-                <p *ngIf="!(recentPosts$ | async)?.length" style="text-align: center;">No recent posts.</p>
+                <p *ngIf="(recentPosts$ | async)?.length === 0" style="text-align: center;">No recent posts.</p>
                 <!-- <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Digital Targovishte</h5>

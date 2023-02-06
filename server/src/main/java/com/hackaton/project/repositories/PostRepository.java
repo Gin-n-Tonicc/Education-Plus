@@ -10,7 +10,7 @@ import org.springframework.data.repository.query.Param;
 import java.awt.print.Pageable;
 
 public interface PostRepository extends CrudRepository<Post, Long> {
-    @Query(value = "SELECT * FROM Post", nativeQuery = true)
+    @Query(value = "SELECT p FROM Post p ORDER BY p.id DESC")
     Post[] getAll();
 
 

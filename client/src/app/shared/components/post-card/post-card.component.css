@@ -1,4 +1,5 @@
 .card {
     text-align: center;
     width: 60vw;
+    cursor: pointer;
 }

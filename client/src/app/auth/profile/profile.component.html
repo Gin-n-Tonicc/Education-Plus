@@ -19,6 +19,7 @@
         </div>
     </div>
 
+
     <ng-container *ngIf="isStudent">
         <div>
             <h4 style="color:#6495ED; text-align: center;" class="recent-posts-title">Followed Businesses</h4>
@@ -26,6 +27,7 @@
                 <app-following-card *ngFor="let followedBusiness of followedBusinesses"
                     [business]="followedBusiness.gotFollowedBusiness"
                     (deleteEvent)="handleDelete()"></app-following-card>
+                <p *ngIf="followedBusinesses?.length == 0">Not following any businesses yet</p>
             </div>
         </div>
     </ng-container>

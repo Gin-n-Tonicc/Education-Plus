@@ -3,6 +3,7 @@
     width: 18rem;
     margin-bottom: 2rem;
     cursor: pointer;
+    height: 100%;
 }
 
 .card-text {

@@ -23,11 +23,8 @@
     text-align: center;
 }
 
-.card {
-    text-align: center;
-    width: 18rem;
-}
-
-.card-text {
-    margin: 2rem 0;
+@media only screen and (max-width: 1000px) {
+    .cards-container {
+        flex-direction: column;
+    }
 }

@@ -17,3 +17,7 @@
 .header ul li {
     cursor: pointer;
 }
+
+.search-container {
+    padding: 0;
+}

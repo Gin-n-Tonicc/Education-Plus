@@ -2,6 +2,7 @@ package com.hackaton.project.services;
 
 import com.hackaton.project.dtos.user.UserAuthDTO;
 import com.hackaton.project.entities.Post;
+import com.hackaton.project.enums.Role;
 import com.hackaton.project.exceptions.common.EntityNotFoundException;
 import com.hackaton.project.exceptions.common.InsufficientPermissionsException;
 import com.hackaton.project.exceptions.user.UserIsAuthenticatedException;
@@ -40,14 +41,34 @@ public class PostService {
     public Post createPost(HttpServletRequest request,Post post) {
         UserAuthDTO optionalUser = (UserAuthDTO) request.getAttribute("user");
         boolean isAuthenticated = Objects.nonNull(request.getAttribute("isAuthenticated"));
+
         if(!isAuthenticated){
             throw new UserIsAuthenticatedException();
         }
         if (!optionalUser.getRole().equals(BUSINESS)) {
             throw new InsufficientPermissionsException();
         }
+
         post.setBusinessId(optionalUser.getId());
         return postRepository.save(post);
+    }
+
+    public void deletePostById(Long id, UserAuthDTO userAuthDTO, boolean isAuthenticated) {
+        Post post = this.getById(id);
+
+        if (!isAuthenticated) {
+            throw new InsufficientPermissionsException();
+        }
+
+        if (userAuthDTO.getRole() == Role.STUDENT) {
+            throw new InsufficientPermissionsException();
+        }
+
+        if (!userAuthDTO.getId().equals(post.getBusinessId())) {
+            throw new InsufficientPermissionsException();
+        }
+
+        postRepository.delete(post);
     }
 
     public Post[] getPostsByLimit() {

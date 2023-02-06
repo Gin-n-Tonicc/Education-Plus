@@ -23,6 +23,7 @@ export class ProfileVisitComponent implements OnInit {
     recentPosts$!: Observable<IPost[]>;
     submitted = false;
     isStudent = false;
+    hasFollowedAlready = false;
 
     constructor(
         private followService: FollowService,
@@ -35,9 +36,18 @@ export class ProfileVisitComponent implements OnInit {
         const id = route.snapshot.paramMap.get('id');
         this.isStudent = authService.user?.role === 'STUDENT';
 
-        this.recentPosts$ = postService.fetchRecentById(
-            Number(this.authService.user?.id)
-        );
+        if (authService.isUserAuthenticated) {
+            followService
+                .getFollows(Number(authService.user?.id))
+                .subscribe(
+                    (v) =>
+                        (this.hasFollowedAlready = v.some(
+                            (x) => x.followedStudent.id == authService.user?.id
+                        ))
+                );
+        }
+
+        this.recentPosts$ = postService.fetchRecentById(Number(id));
 
         if (!id || isNaN(Number(id))) {
             router.navigate([Pages.Home]);
@@ -62,7 +72,10 @@ export class ProfileVisitComponent implements OnInit {
                 this.businessData?.id as number
             )
             .subscribe({
-                next: () => (this.submitted = false),
+                next: () => {
+                    this.hasFollowedAlready = true;
+                    this.submitted = false;
+                },
                 error: () => (this.submitted = false),
             });
     }
